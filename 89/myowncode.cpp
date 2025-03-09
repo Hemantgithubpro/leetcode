@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// code for leetcode problem 89
 int decimaltobinary(int n){
     int binary = 0;
     int rem, i = 1;
