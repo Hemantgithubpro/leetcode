@@ -2,6 +2,11 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+int func(){
+    int k=0;
+    return k;
+}
+
 // solution by neetcode: not able to understand it completely because i have not studied dynnamic programmin yet.
 int main(){
     
