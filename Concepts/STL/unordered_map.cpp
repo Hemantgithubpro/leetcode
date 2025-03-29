@@ -4,7 +4,7 @@ using namespace std;
 // Syntax:
 // unordered_map<key_type, value_type> mpp;
 // key_type: Data type of key. value_type: Data type of value. mpp: Named assigned to the unordered map.
-
+// most important are: insertion() and finding()
 
 // insertion: avg TC=O(1)
 void insertion(){
