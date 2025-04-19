@@ -38,8 +38,10 @@ long long countFairPairs(vector<int>& nums, int lower, int upper) {
     //  i           
     int i=0;
     while(i<nums.size()){
-        int j= bsearch()
-        
+        int j= bsearch(nums,i,lower);
+        for(; nums[j]+nums[i]<=upper; j++){
+            count++;
+        }
         
 
         i++;
@@ -54,9 +56,12 @@ long long countFairPairs(vector<int>& nums, int lower, int upper) {
 }
 
 int main(){
-    vector<int> nums= {0,1,7,4,4,5};
-    int lower=3;
-    int upper=6;
+    // vector<int> nums= {0,1,7,4,4,5};
+    // int lower=3;
+    // int upper=6;
+    vector<int> nums = {1,7,9,2,5};
+    int lower = 11;
+    int upper = 11;
     cout<<countFairPairs(nums,lower,upper);
     return 0;
 }
