@@ -13,20 +13,30 @@ int noofdist(vector<int>& nums){
 int countCompleteSubarrays(vector<int>& nums) {
     int k=noofdist(nums);
     // sliding windows of size k,k+1,k+2,...,nums.size()
-    for(int i=0; i<nums.size()-k; i++){
+    int ans=0;
+    for(int i=0; i<nums.size()-k+1; i++){
         unordered_map<int,int> um;
+        int r=k+i-1;
+        for(int l=0; l<=r; l++){
+            um[nums[l]]++;
+        }
         int l=0;
-        int r=k+i;
         while(r<nums.size()){
-            for(int j=l; j<r; j++){
-                um[nums[j]]++;
+            if(um.size()==k){
+                ans++;
             }
+            r++;
+            um[nums[r]]++;
+            um[nums[l]]--;
+            if(um[nums[l]]==0) um.erase(nums[l]);
+            l++;
         }
     }
-    int ans=0;
-    
+    return ans;
 }
 
 int main(){
-    
+    vector<int> num={1,3,1,2,2};
+    // vector<int> num={5,5,5,5};
+    cout<<countCompleteSubarrays(num);
 }
