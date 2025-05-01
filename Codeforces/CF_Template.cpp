@@ -8,7 +8,8 @@ int solve(){
 int main(){
     int testcases;
     cin>>testcases;
-    for(int i=0; i<testcases; i++){
+    while(testcases--){
+        // input
         cout<<solve()<<endl;
     }
 }
