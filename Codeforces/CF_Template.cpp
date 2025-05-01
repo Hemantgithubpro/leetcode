@@ -1,8 +1,10 @@
+// can use codechef.com/ide 
 #include <bits/stdc++.h>
 using namespace std;
 
-int solve(){
+void solve(){
     
+    cout<<endl;
 }
 
 int main(){
@@ -10,6 +12,6 @@ int main(){
     cin>>testcases;
     while(testcases--){
         // input
-        cout<<solve()<<endl;
+        solve();
     }
 }
