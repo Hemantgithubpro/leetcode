@@ -50,5 +50,6 @@ int minCapability(vector<int>& nums, int k) {
 
 int main(){
 	vector<int> nums={2,7,9,3,1};
-	cout<<minCapability(nums,3);
+	int k=2;
+	cout<<minCapability(nums,k);
 }
