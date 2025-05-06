@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// time limit exceeded.
+// did it.
 int luckiness(int q){
     int maxi=INT_MIN;
     int mini=INT_MAX;
@@ -17,9 +17,17 @@ void solve(int a, int b){
     int temp=a;
     int maxi=luckiness(a);
     for(int i=a+1; i<=b; i++){
+        // luckiness(60)=6, 60++=6--,
+        // luckiness(55)=0, 55++=0++
+        // luckiness(56)=1, 56++=1++
+        // luckiness(59)=4, 59++=4+2
         if(luckiness(i)>=maxi){
             temp=i;
             maxi=luckiness(i);
+        }
+        if(luckiness(i)==9){
+            temp=i;
+            break;
         }
     }
     cout<<temp<<endl;
