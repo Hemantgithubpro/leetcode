@@ -1,0 +1,1 @@
+did it with my first attempt, and yes doing it on pen and paper is a lot easier than doing it on the computer.
