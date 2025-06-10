@@ -9,22 +9,21 @@ void solve(int n, vector<int>& a){
     }
     sort(a.begin(),a.end());
     long long k=a[0]+a[n-1];
-    unordered_map<int,int> um;
-    for (int i = 0; i < n; i++)
-    {
-        um[a[i]]++;
-    }
-    for (int i = 0; i < n; i++)
-    {
-        // we're at a[0], we need k-a[0]
-        int needed=k-a[i];
-        if(um[needed]>0){
-            
+    for(int i=0; i<n; i++){
+        if(i%2==0){
+            if(a[i]+a[n-i-1] !=k){
+                cout<<"no"<<endl;
+                return;
+            }
         }
-        else cout<<"no"<<endl;
+        else{
+            if(a[i]+a[n-i]!=k){
+                cout<<"no"<<endl;
+                return;
+            }
+        }
     }
-    
-    
+    cout<<"yes"<<endl;
     
 }
 

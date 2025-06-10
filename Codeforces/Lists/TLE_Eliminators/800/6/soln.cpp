@@ -1,30 +1,35 @@
+// this is the first solution which i'll see.
+
+// my soln
 #include <bits/stdc++.h>
 using namespace std;
 
 void solve(int n, vector<int>& a){
     // code
-    if(n==2){
+    if(n<=2){
         cout<<"yes"<<endl;
         return;
     }
-    sort(a.begin(),a.end());
-    long long k=a[0]+a[n-1];
+    
     unordered_map<int,int> um;
     for (int i = 0; i < n; i++)
     {
         um[a[i]]++;
     }
-    for (int i = 0; i < n; i++)
-    {
-        // we're at a[0], we need k-a[0]
-        int needed=k-a[i];
-        if(um[needed]>0){
-            
-        }
-        else cout<<"no"<<endl;
+    // cout<<um.size();
+    if(um.size()==1){
+        cout<<"yes"<<endl;
+        return;
     }
-    
-    
+    if(um.size()>2) cout<<"no"<<endl;
+    else{
+        vector<int> v;
+        for(auto it=um.begin(); it!=um.end(); it++){
+            v.push_back(it->first);
+        }
+        if(abs(um[v[0]]-um[v[1]])>1) cout<<"no"<<endl;
+        else cout<<"yes"<<endl;
+    }
     
 }
 
