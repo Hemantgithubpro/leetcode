@@ -1,7 +1,7 @@
+// it was really a brute force soln
+// well, i saw the solution and copied it, slightly understood it.
 #include <bits/stdc++.h>
 using namespace std;
-
-// this is my own solution which was initially giving error on test case 2, but then i changed isin funcn from soln, and it also got accepted.
 
 // bool isin(string x, string s)
 // {
@@ -29,6 +29,17 @@ using namespace std;
 //     return false;
 // }
 
+string append(string x)
+{
+    string y = x;
+    for (int i = 0; i < x.size(); i++)
+    {
+        y.push_back(x[i]);
+    }
+    return y;
+}
+
+// there was some problem in my isin funcn above.
 bool isin(string x, string s)
 {
     if (x.size() < s.size())
@@ -44,35 +55,33 @@ bool isin(string x, string s)
     return false;
 }
 
-string append(string x)
-{
-    string y = x;
-    for (int i = 0; i < x.size(); i++)
-    {
-        y.push_back(x[i]);
-    }
-    return y;
-}
-
 void solve(int n, int m, string x, string s)
 {
-    // code
-    int ans = 0;
-    while (x.size() < m)
-    {
-        x = append(x);
-        ans++;
-    }
+    // max of m = 24, so n=1, append(n)=2 then 4 then 8 then 16 then 32(limit reached), max 5 append steps could happen
+    string x0 = x;
+    string x1 = x0 + x0;
+    string x2 = x1 + x1;
+    string x3 = x2 + x2;
+    string x4 = x3 + x3;
+    string x5 = x4 + x4;
 
-    if (isin(x, s))
-        cout << ans;
-    else{
-        x=append(x);
-        ans++;
-        if(isin(x,s)) cout<<ans;
-        else cout<<-1;
-    }
-    cout<<endl;
+    long long ans = -1;
+    if (isin(x0, s))
+        ans = 0;
+    else if (isin(x1, s))
+        ans = 1;
+    else if (isin(x2, s))
+        ans = 2;
+    else if (isin(x3, s))
+        ans = 3;
+    else if (isin(x3, s))
+        ans = 3;
+    else if (isin(x4, s))
+        ans = 4;
+    else if (isin(x5, s))
+        ans = 5;
+
+    cout << ans << endl;
 }
 
 int main()

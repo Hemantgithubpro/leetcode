@@ -1,9 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-
-void solve(){
-    // code
-}
+// this was the easiest as you just had to see if the element, k is present in the array or not.
 
 int main() {
 #ifndef ONLINE_JUDGE
@@ -18,8 +15,18 @@ int main() {
     int t;
     cin >> t;
     while (t--) {
-        // input
-        solve();
+        int n;
+        cin >> n;
+        int k; cin>>k;
+        vector<int> a(n);
+        unordered_set<int> us;
+        for (int i = 0; i < n; i++)
+        {
+            cin >> a[i];
+            us.insert(a[i]);
+        }
+        if(us.find(k)!=us.end()) cout<<"yes"<<endl;
+        else cout<<"no"<<endl;
     }
 
     return 0;
