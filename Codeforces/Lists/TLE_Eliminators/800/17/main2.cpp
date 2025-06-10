@@ -12,11 +12,12 @@ void solve(int n, int k, int x)
     vector<int> ans;
     
     
-    for(int i=k; i>=0&&i!=x; i--){
+    for(int i=k; i>0&&i!=x; i--){
+        cout<<"i: "<<i<<"  ";
         while (n >= i)
         {
-            n-=k;
-            ans.push_back(k);
+            n-=i;
+            ans.push_back(i);
             
             // n = n % k;
             // remaining n

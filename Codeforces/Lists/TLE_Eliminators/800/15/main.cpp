@@ -1,8 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void solve(){
-    // code
+void solve(int n, vector<int>& a){
+    // this question is basically counting number of odds and number of evens
+
 }
 
 int main() {
@@ -19,7 +20,19 @@ int main() {
     cin >> t;
     while (t--) {
         // input
-        solve();
+        int n;
+        cin >> n;
+        vector<int> a(n);
+        int noofodd=0;
+        for (int i = 0; i < n; i++)
+        {
+            cin >> a[i];
+            if(a[i]%2==1) noofodd++;
+        }
+        if(noofodd%2==0) cout<<"YES"<<endl;
+        else cout<<"NO"<<endl;
+
+        // solve(n,a);
     }
 
     return 0;
