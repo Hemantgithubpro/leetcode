@@ -12,7 +12,7 @@ void solve(int n, int k, int x)
     vector<int> ans;
     
     
-    for(int i=k; i>=0&&i!=x; i--){
+    for(int i=k; i>0&&i!=x; i--){
         while (n >= i)
         {
             n-=k;

@@ -1,6 +1,17 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+bool isamultiple(int k, int n, int x){
+    for(int i=2; i<=k; i++){
+        if(i!=x){
+            if(n%i==0){
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 void solve(int n, int k, int x)
 {
     if (x == k)
@@ -11,22 +22,23 @@ void solve(int n, int k, int x)
         return;
     }
     
+    int temp=0;
     vector<int> ans;
-    for (int i = k; i > 0 && i != x; i--)
+    for (int i = k; i > 0; i--)
     {
-        // cout << "i: " << i << "  ";
-        while (n >= i)
-        {
-            cout << "n: " << n << "  ";
-            n -= i;
-            ans.push_back(i);
+        if(i!=x){
 
-            // n = n % k;
-            // remaining n
+            // cout << "i: " << i << "  ";
+            while (temp+i<=n)
+            {
+                // cout << "temp: " << temp << "  ";
+                temp+= i;
+                ans.push_back(i);
+            }
         }
     }
 
-    if (n == 0)
+    if (temp==n)
     {
         cout << "YES" << endl;
         cout << ans.size() << endl;
