@@ -1,9 +1,15 @@
 #include <bits/stdc++.h>
+#define ll long long
+
 using namespace std;
 
 void solve(){
     // code
 }
+
+// void solve(ll n, vector<ll>& a){
+
+// }
 
 int main() {
 #ifndef ONLINE_JUDGE
@@ -14,11 +20,18 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(NULL);
 
-    // Your code goes here
     int t;
     cin >> t;
     while (t--) {
-        // input
+        // ll n;
+        // cin>>n;
+        // vector<ll> a(n);
+        // for (int i = 0; i < n; i++)
+        // {
+        //     cin>>a[i];
+        // }
+        // solve(n,a);
+        
         solve();
     }
 

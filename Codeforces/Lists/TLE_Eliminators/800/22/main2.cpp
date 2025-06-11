@@ -16,16 +16,24 @@ int main() {
     cin >> t;
     while (t--) {
         // input
-        int n;
+        long long n;
         cin>>n;
-        int k;
+        long long k;
         cin>>k;
-        while(n%k!=0 && n>=0){
-            n-=2;
+        // while(n%k!=0 && n>=0){
+        //     n-=2;
+        // }
+        
+        if(n%2==1){
+            if(k%2==1) cout<<"yes"<<endl;
+            else cout<<"no"<<endl;
         }
-        if(n%k==0) cout<<"yes"<<endl;
-        else if(n==0) cout<<"yes"<<endl;
-        else cout<<"no"<<endl;
+        else{
+            cout<<"yes"<<endl;
+        }
+        // if(n%k==0) cout<<"yes"<<endl;
+        // else if(n==0) cout<<"yes"<<endl;
+        // else cout<<"no"<<endl;
         // solve();
     }
 
