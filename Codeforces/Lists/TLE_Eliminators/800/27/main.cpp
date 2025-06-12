@@ -1,8 +1,21 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void solve(){
-    // code
+void solve(int n, vector<int> &a){
+    long long all=1;
+    vector<long long> beforek;
+    vector<long long> afterk1;
+    for (int i = 0; i < n; i++)
+    {
+        all*=a[i];
+    }
+    long long temp1=1;
+    long long temp2=all;
+    for (int i = 0; i < n; i++)
+    {
+        
+    }
+    
 }
 
 int main() {
@@ -19,7 +32,14 @@ int main() {
     cin >> t;
     while (t--) {
         // input
-        solve();
+        int n;
+        cin >> n;
+        vector<int> a(n);
+        for (int i = 0; i < n; i++)
+        {
+            cin >> a[i];
+        }
+        solve(n,a);
     }
 
     return 0;
