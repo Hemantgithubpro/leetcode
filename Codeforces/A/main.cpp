@@ -4,7 +4,8 @@
 using namespace std;
 
 void solve(){
-    // code
+    // input here only
+    
 }
 
 // void solve(ll n, vector<ll>& a){
