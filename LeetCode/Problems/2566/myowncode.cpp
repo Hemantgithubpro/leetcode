@@ -4,16 +4,12 @@ using namespace std;
 int minMaxDifference(int num)
 {
     string s = to_string(num);
-    unordered_map<char, int> um;
-    for (int i = 0; i < s.size(); i++)
-    {
-        um[s[i]]++;
-    }
 
     int mini = INT_MAX;
     int maxi = INT_MIN;
 
-    // for minimum number: find most frequent no. or the front most occurence int and make it '0' and positions don't change
+    // for minimum number: find most frequent no. or the front most
+    // occurence int and make it '0' and positions don't change
     string s1 = s;
     int i = 0;
     char first = s1[0];
@@ -29,7 +25,8 @@ int minMaxDifference(int num)
     }
     mini = min(mini, stoi(s1));
 
-    // for maximum number: find most frequent no. and make it '9' and positions don't change
+    // for maximum number: find most frequent no. and make it '9' and
+    // positions don't change
     string s2 = s;
     char f = s2[0];
     int j = 0;
