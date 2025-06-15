@@ -3,12 +3,6 @@ using namespace std;
 
 void solve(){
     // code
-    long long n,k,x;  cin>>n>>k>>x;
-    // cout<<n<<" "<<k<<" "<<x<<endl;
-    long long largestsum=(k * (2*n - k + 1)) / 2;
-    long long smallestsum=(k*(k+1))/2;
-    if(smallestsum<=x && x<=largestsum) cout<<"YES"<<endl;
-    else cout<<"NO"<<endl;
 }
 
 int main() {

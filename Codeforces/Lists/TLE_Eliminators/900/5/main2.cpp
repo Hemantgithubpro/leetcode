@@ -1,32 +1,31 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> operation(vector<int>&arr, int l, int r){
-    long long s=arr[l];
-    for (int i = l+1; i <= r; i++)
+bool ifallzero(vector<int>&a){
+    for (int i = 0; i < a.size(); i++)
     {
-        s=s^arr[i];
+        if(a[i]!=0) return false;
     }
-
-    for (int i = l; i <= r; i++)
-    {
-        arr[i]=s;
-    }
-    return arr;
+    return true;
 }
-
-
 
 void solve(){
     // change all elements in array to 0
     // operations: at most 8 times
     int n; cin>>n;
-    int a[n]; 
+    vector<int> a(n); 
     for (int i = 0; i < n; i++)
     {
         cin>>a[i];
     }
     
+    if(ifallzero(a)) cout<<0;
+    else{
+            cout<<2<<endl;
+            cout<<1<<" "<<n<<endl;
+            cout<<1<<" "<<n;
+    }
+    cout<<endl;
 
 }
 

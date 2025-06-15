@@ -2,7 +2,25 @@
 using namespace std;
 
 void solve(){
-    // code
+    // a: max value of timer, b: intial value of timer
+    int a,b,n; cin>>a>>b>>n;
+    // int arr[n]; 
+    vector<pair<int,bool>> x(n); 
+    for (int i = 0; i < n; i++)
+    {
+        cin>>x[i].first;
+        x[i].second=true;    // can be used= true, if used= false
+    }
+
+    int time=b;
+    while(b--){ // timer is running, for every second
+        for(int i=0; i<n; i++){
+            
+        }
+    }
+
+
+    
 }
 
 int main() {
