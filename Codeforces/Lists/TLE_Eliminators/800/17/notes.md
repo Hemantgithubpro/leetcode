@@ -8,3 +8,5 @@ like
 then we can use the formula for number of divisors
 
 i know there is a better way to do this, but i am not sure how to do it
+
+## Did it myself without seeing any solution, WOOOOOOOOOOOOOOHHHHHHHHHHOOOOOOOOOOO!
