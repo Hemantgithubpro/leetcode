@@ -1,24 +1,47 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void solve(int n, vector<int> &a){
-    long long all=1;
-    vector<long long> beforek;
-    vector<long long> afterk1;
+void solve(int n, vector<int> &a)
+{
+    int noof2 = 0;
     for (int i = 0; i < n; i++)
     {
-        all*=a[i];
+        if (a[i] == 2)
+            noof2++;
     }
-    long long temp1=1;
-    long long temp2=all;
-    for (int i = 0; i < n; i++)
+
+    if (noof2 % 2 != 0)
+        cout << -1 << endl;
+    else if (noof2 == 0)
+        cout << 1 << endl;
+    else
     {
-        
+        // int pos = 0;
+        // int countof2 = 0;
+        // while (countof2 <= noof2 / 2)
+        // {
+        //     if (a[pos] == 2)
+        //         countof2++;
+        //     pos++;
+        // }
+        // cout << pos << endl;
+
+        int countof2 = 0;
+        for (int i = 0; i < n; i++)
+        {
+            if (countof2 == noof2 / 2)
+            {
+                cout << i << endl;
+                return;
+            }
+            if (a[i] == 2)
+                countof2++;
+        }
     }
-    
 }
 
-int main() {
+int main()
+{
 #ifndef ONLINE_JUDGE
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
@@ -30,7 +53,8 @@ int main() {
     // Your code goes here
     int t;
     cin >> t;
-    while (t--) {
+    while (t--)
+    {
         // input
         int n;
         cin >> n;
@@ -39,7 +63,7 @@ int main() {
         {
             cin >> a[i];
         }
-        solve(n,a);
+        solve(n, a);
     }
 
     return 0;
