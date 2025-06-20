@@ -2,34 +2,30 @@
 using namespace std;
 
 void solve(){
-    // code
-    int n,k;
-    cin>>n>>k;
+    int n,k;    cin>>n>>k;
     vector<int> a(n);
     for (int i = 0; i < n; i++)
-    {
-        cin>>a[i];
-    }
+    {cin>>a[i];}
     
     int ans1=0;
     sort(a.begin(),a.end());
     for(int i=n-1; i>0; i--){
         if(abs(a[i]-a[i-1])>k){
-            ans1=max(ans1,i);
+            ans1=i;
+            break;
         }
     }
-    
-    int ans2=n-1;
+
+    int ans2=0;
     for (int i = 1; i < n; i++)
     {
         if(abs(a[i]-a[i-1])>k){
-            ans2=min(ans2,n-i);
+            ans2=n-i+1;
+            break;
         }
     }
     
-    
     int ans=min(ans1,ans2);
-
     cout<<ans<<endl;
 }
 
