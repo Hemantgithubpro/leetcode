@@ -3,7 +3,6 @@ using namespace std;
 
 void solve()
 {
-    // code
     int n, k;
     cin >> n >> k;
     vector<int> a(n);
@@ -11,28 +10,23 @@ void solve()
     {
         cin >> a[i];
     }
-
-    int ans1 = 0;
     sort(a.begin(), a.end());
-    for (int i = n - 1; i > 0; i--)
+
+    int longest = 0;
+    int i = 1, j = 0;
+    // i will keep moving, and when then condition is met j also moves
+    while (i < n)
     {
         if (abs(a[i] - a[i - 1]) > k)
         {
-            ans1 = max(ans1, i);
+            j = i;
         }
+        longest = max(longest, i - j + 1);
+        i++;
     }
 
-    int ans2 = n - 1;
-    for (int i = 1; i < n; i++)
-    {
-        if (abs(a[i] - a[i - 1]) > k)
-        {
-            ans2 = min(ans2, n - i);
-        }
-    }
-
-    int ans = min(ans1, ans2);
-
+    int ans = n - longest;
+    if(n==1) ans=0;
     cout << ans << endl;
 }
 
