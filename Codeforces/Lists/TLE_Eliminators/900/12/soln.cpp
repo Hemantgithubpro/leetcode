@@ -3,7 +3,7 @@ using namespace std;
 
 void solve()
 {
-    // code
+    // O(n^2)
     int n;
     cin >> n;
     vector<int> a(n);
@@ -12,37 +12,28 @@ void solve()
         cin >> a[i];
     }
 
-    int mini = INT_MAX;
-    int minindex = 0;
-    for (int i = 1; i < n; i++)
+    if (n == 1)
     {
-        if (a[i] < mini)
-        {
-            minindex = i;
-            mini = a[i];
-        }
-    }
-    if (mini <= 1)
-    {
-        cout << -1 << endl;
+        cout << 0 << endl;
         return;
     }
 
-    int count = 0;
-    while (mini >= a[0])
+    int couldbe = 0;
+
+    for (int i = 1; i < n; i++)
     {
-        a[0] = a[0] / 2;
-        count++;
+        couldbe = max(couldbe, a[i] - a[0]);
+    }
+    for (int i = 0; i < n - 1; i++)
+    {
+        couldbe = max(couldbe, a[n - 1] - a[i]);
+    }
+    for (int i = 0; i < n - 1; i++)
+    {
+        couldbe = max(couldbe, a[i] - a[i + 1]);
     }
 
-    for (int i = 1; i < n || a[i] != mini; i++)
-    {
-        while (a[i] >= mini)
-        {
-            a[i] = a[i] / 2;
-            count++;
-        }
-    }
+    cout << couldbe << endl;
 }
 
 int main()
