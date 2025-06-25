@@ -8,3 +8,6 @@
    - If `n % 4 == 1`: result is `1`
    - If `n % 4 == 2`: result is `n + 1`
    - If `n % 4 == 3`: result is `0`
+
+
+# Did this question after sometime, and did it in first attempt.
