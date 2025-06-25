@@ -3,10 +3,9 @@ using namespace std;
 
 void solve()
 {
-    // code
     long long n;
     cin >> n;
-    if (n % 2 != 0)
+    if (n % 2 != 0 || n < 4)
     {
         cout << -1 << endl;
         return;
@@ -17,14 +16,15 @@ void solve()
     // calculation for mini
     mini += n / 6;
     mini += (n % 6) / 4;
-    // if(n%6 ==2){
-
-    // }
+    if (n % 6 == 2)
+        mini++;
+    
 
     maxi += n / 4;
-    // maxi += (n % 6) / 4;
-    // if(n%6 ==2){
-
+    // if (n % 4 == 2)
+    // {
+    //     cout << -1 << endl;
+    //     return;
     // }
 
     cout << mini << " " << maxi << endl;
