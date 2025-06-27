@@ -1,24 +1,20 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define ll long long
+
+typedef long long ll;
 void solve()
 {
-    // i know this approach will give tle, but just give it a try.
-    ll x, n; // initial position, no. of jumps
-    cin >> x >> n;
-
-    for (ll i = 1; i <= n; i++)
+    string s;
+    cin >> s;
+    ll initialone = 0, initialzero = 0;
+    for (ll i = 0; i < s.size(); i++)
     {
-        if (x % 2 == 0) // even=> jump left
-        {
-            x -= i;
-        }
-        else // odd=> jump right
-        {
-            x += i;
-        }
+        if (s[i] == '1')
+            initialone++;
+        else
+            initialzero++;
     }
-    cout << x << endl;
+
 }
 
 int main()

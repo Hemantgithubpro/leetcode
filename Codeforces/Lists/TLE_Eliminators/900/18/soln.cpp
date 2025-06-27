@@ -20,62 +20,34 @@ void solve()
         cout << "YES" << endl;
         return;
     }
-    // // if there is only one '1'
-    // if ((a == 1 && b != 1 && c != 1) ||
-    //     (b == 1 && a != 1 && c != 1) ||
-    //     (c == 1 && a != 1 && b != 1))
-    // {
-    //     cout << "YES" << endl;
-    //     return;
-    // }
 
+    bool answer = false;
     // i've two choices if we've to make the sequence increasing or decreasing
     // first try to increase the edges, a or c, first c.
     long long temp = 2 * b - a;
     long long tempc = c;
-    for (long long i = 1; tempc * i <= temp; i++)
-    {
-        tempc = tempc * i;
-        if (tempc == temp)
-        {
-            cout << "YES" << endl;
-            return;
-        }
-        tempc = c;
-    }
+    if (temp / tempc > 0 && temp % tempc == 0)
+        answer = true;
 
     // try increasing a
     temp = 2 * b - c;
     long long tempa = a;
-    for (long long i = 1; tempa * i <= temp; i++)
-    {
-        tempa = tempa * i;
-        if (tempa == temp)
-        {
-            cout << "YES" << endl;
-            return;
-        }
-        tempa = a;
-    }
+    if (temp / tempa > 0 && temp % tempa == 0)
+        answer = true;
 
     // try increasing b
     if ((a + c) % 2 == 0)
     {
         temp = (a + c) / 2;
         long long tempb = b;
-        for (long long i = 1; tempb * i <= temp; i++)
-        {
-            tempb = tempb * i;
-            if (tempb == temp)
-            {
-                cout << "YES" << endl;
-                return;
-            }
-            tempb = b;
-        }
+        if (temp / tempb > 0 && temp % tempb == 0)
+            answer = true;
     }
 
-    cout << "NO" << endl;
+    if (answer)
+        cout << "YES" << endl;
+    else
+        cout << "NO" << endl;
 }
 
 int main()

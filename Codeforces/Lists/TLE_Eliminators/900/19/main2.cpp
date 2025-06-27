@@ -3,21 +3,38 @@ using namespace std;
 #define ll long long
 void solve()
 {
-    // i know this approach will give tle, but just give it a try.
     ll x, n; // initial position, no. of jumps
     cin >> x >> n;
 
-    for (ll i = 1; i <= n; i++)
+    if (x % 2 == 0) // even=> jump left
     {
-        if (x % 2 == 0) // even=> jump left
+        // x -= i;
+        if (n % 2 == 0)
         {
-            x -= i;
+            x += n / 2;
         }
-        else // odd=> jump right
+        else
         {
-            x += i;
+            // n--;
+            x += n / 2;
+            x -= n;
         }
     }
+    else // odd=> jump right
+    {
+        // x += i;
+        if (n % 2 == 0)
+        {
+            x -= n / 2;
+        }
+        else
+        {
+            // n--;
+            x -= n / 2;
+            x += n;
+        }
+    }
+
     cout << x << endl;
 }
 
