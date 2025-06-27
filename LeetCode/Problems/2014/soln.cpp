@@ -50,7 +50,7 @@ void backtracking(string &s, string &curr, vector<bool> &canUse, vector<int> &re
     }
 }
 
-string longestSubsequenceRepeated(string s, int k)
+string longestSubsequenceRepeatedK(string s, int k)
 {
     int n = s.length();
 
@@ -84,6 +84,6 @@ int main()
     string s = "letsleetcode";
     int k = 2;
 
-    cout << longestSubsequenceRepeated(s, k);
+    cout << longestSubsequenceRepeatedK(s, k);
     return 0;
 }
