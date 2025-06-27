@@ -1,7 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 // there is also a leetcode easy problem: isSubsequence
-string result = ""; // should not use variable globally
+// should not use variable globally
+string result = ""; 
 
 bool isSubsequence(string &s, string &sub, int k)
 {
