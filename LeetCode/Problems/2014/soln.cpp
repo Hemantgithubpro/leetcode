@@ -9,7 +9,7 @@ bool isSubsequence(string &s, string &sub, int k)
     int L = sub.length();
     int n = s.length();
 
-    while (i < n && j < k + L)
+    while (i < n && j < k * L)
     {
         if (s[i] == sub[j % L])
             j++;
@@ -24,8 +24,10 @@ void backtracking(string &s, string &curr, vector<bool> &canUse, vector<int> &re
     if (curr.length() > maxLen)
         return;
 
-    if ((curr.length() > result.length()) || (curr.length() == result.length() && curr > result) && isSubsequence(s, curr, k))
+    if ((curr.length() > result.length() || (curr.length() == result.length() && curr > result)) && isSubsequence(s, curr, k))
+    {
         result = curr;
+    }
 
     for (int i = 0; i < 26; i++)
     {
@@ -70,10 +72,8 @@ string longestSubsequenceRepeated(string s, int k)
 
     int maxLen = n / k;
 
-    // string curr;
-    // backtracking(s, curr, canUse, requiredFreq, k, maxLen);
-
-    
+    string curr;
+    backtracking(s, curr, canUse, requiredFreq, k, maxLen);
 
     return result;
 }
