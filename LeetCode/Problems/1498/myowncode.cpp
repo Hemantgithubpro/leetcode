@@ -6,6 +6,7 @@ bool isless(int al, int ar, int target)
     return (al + ar) <= target;
 }
 
+// i don't know how to handle duplicates, it has made things complicated.
 int numSubseq(vector<int> &nums, int target)
 {
     const long long MOD = 1e9 + 7;
@@ -24,7 +25,8 @@ int numSubseq(vector<int> &nums, int target)
             if (i == j)
                 ans++;
             else
-                ans += abs(j - i + 1);
+                // ans += abs(j - i + 1);
+                ans+=pow(2,j-i);
             j++;
         }
         else

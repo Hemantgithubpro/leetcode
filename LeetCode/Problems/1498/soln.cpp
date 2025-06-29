@@ -6,6 +6,8 @@ int numSubseq(vector<int> &nums, int target)
     sort(nums.begin(), nums.end());
 
     const int MOD = 1e9 + 7;
+
+    // just a way of storing powers of 2, so that accessing is easy and not out of bounds.
     vector<int> pow2(n);
     pow2[0] = 1;
     for (int i = 1; i < n; i++)
@@ -33,6 +35,6 @@ int numSubseq(vector<int> &nums, int target)
     return ans;
 }
 
-int main(){
-    
+int main()
+{
 }
