@@ -8,13 +8,13 @@ void solve()
     ll a, b;
     cin >> a >> b;
 
-    // ig the difference is the maximum happiness to achieve
+    // ig the difference is the maximum ans to achieve
+    // gcd(a,b) = gcd(a-b,b)
     ll ans = abs(a - b);
+    ll c = min(a, b);
     ll count = 0;
-    if (min(a, b) > 0)
-    {
-        count = max(a, b) / min(a, b);
-    }
+    if (ans > 0)
+        count = min(c % ans, ans - (c % ans));
     cout << ans << " " << count << endl;
 }
 
