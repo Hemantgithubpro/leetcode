@@ -3,7 +3,7 @@ using namespace std;
 
 void solve()
 {
-    // brute force is possible from seeing the constraints
+    // did it on my own
     int n;
     cin >> n;
     vector<int> a(n);
@@ -13,19 +13,13 @@ void solve()
     }
 
     unordered_set<int> pi, pj, pk;
-    for (int i = 0; i < n - 2; i++)
+    for (int i = 1; i < n - 1; i++)
     {
-        for (int j = i + 1; j < n - 1; j++)
+        if (a[i - 1] < a[i] && a[i + 1] < a[i])
         {
-            for (int k = j + 1; k < n; k++)
-            {
-                if (a[i] < a[j] && a[j] > a[k])
-                {
-                    cout << "YES" << endl;
-                    cout << i + 1 << " " << j + 1 << " " << k + 1 << endl;
-                    return;
-                }
-            }
+            cout << "YES" << endl;
+            cout << i << " " << i + 1 << " " << i + 2 << endl;
+            return;
         }
     }
     cout << "NO" << endl;
