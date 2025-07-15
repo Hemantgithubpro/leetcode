@@ -10,16 +10,35 @@ void solve()
     vector<ll> a(n);
     for (ll i = 0; i < n; i++)
     {
-        cin>>a[i];
+        cin >> a[i];
+        a[i] = (a[i] > q) ? 0 : 1;
     }
 
+    ll count_1 = 0;
+    ll ways = 0;
     // a[i]<=q is valid, sliding window of size k to n.
-    ll ans=0;
-    ll j=0;
-    for(ll i=0; i<n-k; i++){
-        
+    ll ans = 0;
+    ll j = 0;
+    for (ll i = 0; i < n; i++)
+    {
+        if (a[i] == 1)
+            count_1++;
+        else
+        {
+            if (count_1 >= k)
+            {
+                ll diff = count_1 - k + 1;
+                ways += (diff * (diff + 1)) / 2;
+            }
+            count_1 = 0;
+        }
     }
-    
+    if (count_1 >= k)
+    {
+        ll diff = count_1 - k + 1;
+        ways += (diff * (diff + 1)) / 2;
+    }
+    cout << ways << endl;
 }
 
 // void solve(ll n, vector<ll>& a){
