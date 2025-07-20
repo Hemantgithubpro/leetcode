@@ -60,3 +60,5 @@ cout << trie.search("app") << endl;      // returns false
 ```
 
 ## Serialization and Deserialization of Trie Nodes (Leetcode 297)
+## Solution
+[yt video](https://youtu.be/8G7grg45Pd4)
