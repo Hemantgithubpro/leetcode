@@ -9,25 +9,39 @@ void solve()
     int n;
     cin >> n;
     vector<int> a(n), b(n);
-    unordered_map<int, int> um;
     for (int i = 0; i < n; i++)
     {
         cin >> a[i];
-        um[a[i]]++;
     }
     for (int i = 0; i < n; i++)
     {
         cin >> b[i];
-        um[b[i]]++;
     }
+
+    // two pointer approach
+    unordered_map<int, int> uma, umb;
     int ans = 0;
-    // sort(a.begin(),a.end());
-    // sort(b.begin(),b.end());
-    for (auto it = um.begin(); it != um.end(); it++)
+    for (int i = 0; i < n; i++)
     {
-        ans = max(ans, it->second);
+        uma[a[i]]++;
+        umb[b[i]]++;
+        // int temp = max(uma[a[i]], umb[b[i]]);
+        // ans = max(ans, temp);
     }
-    cout << ans << endl;
+
+    auto it1 = max_element(uma.begin(), uma.end());
+    auto it2 = max_element(umb.begin(), umb.end());
+    // cout << it1->first << endl;
+    int i = 0, j = 0;
+    
+    // while (i < n || j < n)
+    // {
+    //     if (a[i] == b[i])
+    //         i++;
+    //     j++;
+    // }
+
+    // cout << ans << endl;
 }
 
 // void solve(ll n, vector<ll>& a){
