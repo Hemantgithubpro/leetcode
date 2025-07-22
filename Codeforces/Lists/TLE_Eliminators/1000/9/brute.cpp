@@ -14,34 +14,29 @@ void solve()
     // input here only
     ll n;
     cin >> n;
+    // a,b is a starting from 1 to n/
     if (n % 2 == 0)
     {
         cout << n / 2 << " " << n / 2 << endl;
-        return;
     }
     else
     {
-        // for (ll i = n / 2; i > 0; i--)
-        // {
-        //     ll a = i;
-        //     ll b = n - a;
-        //     if (b % a == 0) // (n-a)%a => n%a==0, a should be the factor of n
-        //     {
-        //         cout << a << " " << b << endl;
-        //         return;
-        //     }
-        // }
-        ll ansa;
-        for (ll a = 2; a * a <= n; a++)
+        vector<pair<ll, ll>> ab;
+        pair<ll, ll> minimpair;
+        ll mini = LLONG_MAX;
+        for (int i = 1; i <= n / 2; i++)
         {
-            if (n % a == 0)
+            ll a = i;
+            ll b = n - a;
+            ab.push_back({a, b});
+            ll temp = lcm(a, b);
+            mini = min(mini, temp);
+            if (mini == temp)
             {
-                ansa = n / a;
-                cout << ansa << " " << n - ansa << endl;
-                return;
+                minimpair = {a, b};
             }
         }
-        cout << 1 << " " << n - 1 << endl;
+        cout << minimpair.first << " " << minimpair.second << endl;
     }
 }
 
