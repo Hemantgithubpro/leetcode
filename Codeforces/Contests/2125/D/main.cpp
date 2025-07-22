@@ -31,60 +31,55 @@ void solve() {
         cin >> l[i] >> r[i] >> p[i] >> q[i];
     }
 
-    vector<vector<pair<ll, ll>>> cellSegs(m + 1);
-    for (int i = 0; i < n; i++) {
-        for (int c = l[i]; c <= r[i]; c++) {
-            cellSegs[c].push_back({p[i], q[i]});
-        }
-    }
-
-    ll resNum = 1, resDen = 1;
+    ll ans = 1;
     
-    for (int c = 1; c <= m; c++) {
-        auto& segs = cellSegs[c];
-        int k = segs.size();
+    for (int cell = 1; cell <= m; cell++) {
+        vector<int> segIds;
+        for (int i = 0; i < n; i++) {
+            if (l[i] <= cell && cell <= r[i]) {
+                segIds.push_back(i);
+            }
+        }
         
+        int k = segIds.size();
         if (k == 0) {
-            resNum = 0;
+            ans = 0;
             break;
         }
         
-        ll cellNum = 0, cellDen = 1;
+        ll num = 0, den = 1;
         
-        for (auto& [p, q] : segs) {
-            cellDen = (cellDen * q) % MOD;
+        for (int id : segIds) {
+            den = (den * q[id]) % MOD;
         }
         
         for (int i = 0; i < k; i++) {
-            ll pi = segs[i].first;
-            ll qi = segs[i].second;
+            int id = segIds[i];
             
-            ll termNum = pi;
+            ll tnum = p[id];
+            ll tden = q[id];
+            
             for (int j = 0; j < k; j++) {
                 if (i == j) continue;
                 
-                ll pj = segs[j].first;
-                ll qj = segs[j].second;
+                int oid = segIds[j];
+                ll diff = (q[oid] - p[oid] + MOD) % MOD;
                 
-                termNum = (termNum * (qj - pj)) % MOD;
+                tnum = (tnum * diff) % MOD;
+                tden = (tden * q[oid]) % MOD;
             }
             
-            // Convert to common denominator
-            for (int j = 0; j < k; j++) {
-                if (i != j) {
-                    termNum = (termNum * modInverse(segs[j].second, MOD)) % MOD;
-                }
-            }
+            ll factor = (den * modInverse(tden, MOD)) % MOD;
+            tnum = (tnum * factor) % MOD;
             
-            cellNum = (cellNum + termNum) % MOD;
+            num = (num + tnum) % MOD;
         }
         
-        resNum = (resNum * cellNum) % MOD;
-        resDen = (resDen * cellDen) % MOD;
+        ll prob = (num * modInverse(den, MOD)) % MOD;
+        ans = (ans * prob) % MOD;
     }
     
-    ll ans = (resNum * modInverse(resDen, MOD)) % MOD;
-    cout << ans << endl;
+    std::cout << ans << std::endl;
 }
 
 int main() {
