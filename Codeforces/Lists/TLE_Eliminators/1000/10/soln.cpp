@@ -18,26 +18,15 @@ void solve()
         return;
     }
     int maxi = 0;
-    for (int i = 0; i < n; ++i)
+    s += s;
+    int idx = -1;
+    for (int i = s.size() - 1; i >= 0; i--)
     {
+        if (s[i] == 'g')
+            idx = i;
         if (s[i] == c)
         {
-            int j = (i + 1) % n;
-            while (s[j] != 'g')
-            {
-                j = (j + 1) % n;
-            }
-            if (j < i)
-            {
-                maxi = max(maxi, j + n - i);
-            }
-            else
-            {
-                maxi = max(maxi, j - i);
-            }
-
-            if (j > i && j < n)
-                i = j;
+            maxi = max(maxi, idx - i);
         }
     }
     cout << maxi << '\n';
