@@ -48,8 +48,8 @@ int maxCollectedFruits(vector<vector<int>> &fruits)
     // Case C (n-1,0): from bottom left
     // movement: right/ up-right/ down-right
     vector<pair<int, int>> move2 = {{-1, 1}, {0, 1}, {1, 1}};
-    // vector<vector<int>> memo(n, vector<int>(n, -1)); // Separate memo table
-    int c = dfs(fruits, n - 1, 0, n - 1, memo, move2);
+    vector<vector<int>> memo2(n, vector<int>(n, -1)); // Separate memo table
+    int c = dfs(fruits, n - 1, 0, n - 1, memo2, move2);
 
     return a + b + c;
 }
