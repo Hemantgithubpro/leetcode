@@ -24,7 +24,3 @@
 build/
 Debug/
 Release/
-# Ignore C++ executables without extensions
-*
-!*/
-!*.*
