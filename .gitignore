@@ -2,3 +2,29 @@
 /Study_Material
 /LeetCode/Achievements
 /Z_experiment
+# Ignore C/C++ compiled binaries
+*.out
+*.o
+*.obj
+*.a
+*.so
+*.so.*
+*.dylib
+*.dll
+*.lib
+*.lai
+*.la
+*.a.meta
+*.lo
+*.slo
+*.ilk
+*.pdb
+*.exp
+# Ignore build directories
+build/
+Debug/
+Release/
+# Ignore C++ executables without extensions
+*
+!*/
+!*.*
