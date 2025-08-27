@@ -4,42 +4,25 @@ typedef long long ll;
 
 void solve()
 {
-    ll n, m;
-    cin >> n >> m;
+    long long N, M;
+        cin >> N >> M;
 
-    string out;
-    out.reserve(2 * (n + m) - 1);
+        string ans;
+        ans.reserve(2*(N+M) - 1);
 
-    if (m == 0)
-        for (ll i = 0; i < 2 * n - 1; i++)
-            out.push_back('<');
-    else if (n == 0)
-    {
-        if (m == 1)
-        {
-            out.push_back('>');
+        if (N == 0) {
+            ans.append(M, '>');
+            if (M > 1) ans.append(M - 1, '=');
+        } else if (M == 0) {
+            ans.append(N, '<');
+            if (N > 1) ans.append(N - 1, '=');
+        } else {
+            // All inserted comparators can be '<'
+            ans.append(2 * N + M - 1, '<');
+            ans.append(M, '>');
         }
-        else
-        {
-            out.push_back('>');
-            for (ll i = 0; i < m - 1; i++)
-            {
-                out.push_back('=');
-                out.push_back('>');
-            }
-        }
-    }
-    else
-    {
-        for (ll i = 0; i < 2 * n; i++)
-            out.push_back('<');
-        for (ll i = 0; i < 2 * m - 1; i++)
-        {
-            out.push_back((i % 2 == 0) ? '>' : '<');
-        }
-    }
 
-    cout << out << '\n';
+        cout << ans << '\n';
 }
 
 int main()
