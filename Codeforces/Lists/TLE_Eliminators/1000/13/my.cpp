@@ -12,15 +12,39 @@ void solve()
     for (int i = 0; i < n; i++)
         cin >> a[i];
 
-    // range of v= a[i]-x to a[i]+x
-    int first = a[0];
+    // range of v= a[i]-x to a[i]+x, take account of max and min range
+    int maxi = a[0] + x;
+    int mini = a[0] - x;
     int count = 0;
-    for (int i = 0; i < n - 1; i++)
+    for (int i = 1; i < n; i++)
     {
-        if (abs(first - a[i + 1]) > 2 * x)
+        int currmin = a[i] - x;
+        int currmax = a[i] + x;
+
+        // if (a[i] >= mini - x && a[i] <= maxi + x)
+        // {
+        //     if (a[i] > a[i - 1])
+        //         mini = a[i] - x;
+        //     else if (a[i] < a[i - 1])
+        //         maxi = a[i] + x;
+        // }
+        // else
+        // {
+        //     count++;
+        //     maxi = a[i] + x;
+        //     mini = a[i] - x;
+        // }
+
+        if (currmax < mini || currmin > maxi)
         {
             count++;
-            first = a[i + 1];
+            mini = currmin;
+            maxi = currmax;
+        }
+        else
+        {
+            mini = max(mini, currmin);
+            maxi = min(maxi, currmax);
         }
     }
     cout << count << endl;

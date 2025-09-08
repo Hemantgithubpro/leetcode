@@ -12,15 +12,28 @@ void solve()
     for (int i = 0; i < n; i++)
         cin >> a[i];
 
-    // range of v= a[i]-x to a[i]+x
-    int first = a[0];
+    // range of v= a[i]-x to a[i]+x, take account of max and min range
+    int max_val = a[0] + x;
+    int min_val = a[0] - x;
     int count = 0;
-    for (int i = 0; i < n - 1; i++)
+    for (int i = 1; i < n; i++)
     {
-        if (abs(first - a[i + 1]) > 2 * x)
+        int curr_min = a[i] - x;
+        int curr_max = a[i] + x;
+
+        // Check if current range overlaps with previous range
+        if (curr_max < min_val || curr_min > max_val)
         {
+            // No overlap, need a new segment
             count++;
-            first = a[i + 1];
+            min_val = curr_min;
+            max_val = curr_max;
+        }
+        else
+        {
+            // Update the intersection of ranges
+            min_val = max(min_val, curr_min);
+            max_val = min(max_val, curr_max);
         }
     }
     cout << count << endl;
