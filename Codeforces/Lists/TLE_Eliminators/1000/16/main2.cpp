@@ -8,41 +8,18 @@ void solve()
     // input here only
     int n, r, b;
     cin >> n >> r >> b;
-    string s = "R";
-    // i know r>b
-    // i've to distribute r such that it is evenly distributed
-    int t = r / b;
-    r--;
-    // now at max cluster of t or t+1 r can be b/w two b
-    if (b == 1)
+    // Distribute r 'R's into b+1 slots (before, between, and after b 'B's)
+    int slots = b + 1;
+    int base = r / slots;
+    int extra = r % slots;
+    string s = "";
+    for (int i = 0; i < slots; i++)
     {
-        for (int i = 0; i < n; i++)
-        {
-            if (i == n / 2)
-                s += "B";
-            else
-                s += "R";
-        }
-        cout << s << endl;
-        return;
-    }
-    while (r > 0 && b > 0)
-    {
-        if (s.size() % t)
-        {
+        int num_r = base + (i < extra ? 1 : 0);
+        for (int j = 0; j < num_r; j++)
             s += "R";
-            r--;
-        }
-        else
-        {
+        if (i < b)
             s += "B";
-            b--;
-        }
-    }
-    while (r > 0)
-    {
-        s += "R";
-        r--;
     }
 
     cout << s << endl;
