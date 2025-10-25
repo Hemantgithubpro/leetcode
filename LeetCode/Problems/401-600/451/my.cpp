@@ -13,10 +13,22 @@ string frequencySort(string s)
     vector<pair<char, int>> v;
     for (auto it = um.begin(); it != um.end(); it++)
     {
-        
+        v.emplace_back(it->first, it->second);
     }
+
+    sort(v.begin(), v.end(), [](const pair<char, int> &a, const pair<char, int> &b)
+         {
+             return a.second > b.second; // sort by frequency descending
+         });
+
+    string res;
+    for (auto &p : v)
+        res.append(p.second, p.first);
+    return res;
 }
 
 int main()
 {
+    string s = "tree";
+    cout << frequencySort(s);
 }
