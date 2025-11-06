@@ -40,6 +40,39 @@ using namespace std;
 
 void solve()
 {
+    int n, m, killed_count = 0;
+    cin >> n >> m;
+    multiset<ll> swords;
+    for (int i = 0; i < n; ++i)
+    {
+        ll a;
+        cin >> a;
+        swords.insert(a);
+    }
+
+    vector<pair<ll, ll>> monsters(m);
+    for (int i = 0; i < m; ++i)
+        cin >> monsters[i].first;
+    for (int i = 0; i < m; ++i)
+        cin >> monsters[i].second;
+
+    sort(monsters.begin(), monsters.end(), [](auto &x, auto &y)
+         { return x.second > y.second || (x.second == y.second && x.first < y.first); });
+
+    for (auto &[health, reward] : monsters)
+    {
+        auto it = swords.lower_bound(health);
+        if (it != swords.end())
+        {
+            killed_count++;
+            ll sword_used = *it;
+            swords.erase(it);
+            if (reward > 0)
+                swords.insert(max(sword_used, reward));
+        }
+    }
+
+    cout << killed_count << endl;
 }
 int32_t main()
 {

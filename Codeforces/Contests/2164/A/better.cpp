@@ -40,6 +40,18 @@ using namespace std;
 
 void solve()
 {
+    int n;
+    cin >> n;
+    vec(a, n);
+    cin(a, n);
+    int x;
+    cin >> x;
+    int maxi = *max_element(a.begin(), a.end());
+    int mini = *min_element(a.begin(), a.end());
+    if (x >= mini && x <= maxi)
+        yes;
+    else
+        no;
 }
 int32_t main()
 {

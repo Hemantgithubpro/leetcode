@@ -40,6 +40,26 @@ using namespace std;
 
 void solve()
 {
+    int n;
+    cin >> n;
+    vec(a, n);
+    cin(a, n);
+    floop(n)
+    {
+        for (int j = 0; j < i; j++)
+        {
+            if (a[j] < a[i])
+            {
+                int temp = a[i] % a[j];
+                if (temp % 2 == 0)
+                {
+                    cout << a[j] << ' ' << a[i] << endl;
+                    return;
+                }
+            }
+        }
+    }
+    cout << -1 << endl;
 }
 int32_t main()
 {
