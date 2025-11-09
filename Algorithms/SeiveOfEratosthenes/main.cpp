@@ -51,6 +51,6 @@ int no_of_prime_till_n(int n)
 
 int main()
 {
-    int n = 4;
+    int n = 10;
     cout << no_of_prime_till_n(n);
 }
