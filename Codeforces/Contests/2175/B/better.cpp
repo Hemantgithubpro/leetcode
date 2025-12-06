@@ -40,6 +40,21 @@ using namespace std;
 
 void solve()
 {
+    int n, l, r;
+    cin >> n >> l >> r;
+
+    vector<ll> pref(n + 1);
+    for (int i = 1; i <= n; i++)
+        pref[i] = i;
+    pref[r] = pref[l - 1];
+
+    vector<ll> ans(n);
+    for (int i = 1; i <= n; i++)
+        ans[i - 1] = pref[i] ^ pref[i - 1];
+
+    for (auto x : ans)
+        cout << x << ' ';
+    cout << endl;
 }
 int32_t main()
 {

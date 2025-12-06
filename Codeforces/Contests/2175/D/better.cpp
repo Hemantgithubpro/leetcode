@@ -40,6 +40,60 @@ using namespace std;
 
 void solve()
 {
+    int n, k;
+    cin >> n >> k;
+    vector<int> a(n + 1);
+    for (int i = 1; i <= n; i++)
+        cin >> a[i];
+    vector<vector<int>> nxt(n + 2, vector<int>(k + 1, n + 1));
+    for (int i = n; i >= 1; i--)
+        for (int v = 1; v <= k; v++)
+            nxt[i][v] = a[i] >= v ? i : nxt[i + 1][v];
+    using P = pair<int, ll>;
+    vector<vector<vector<P>>> dp(k + 1, vector<vector<P>>(k + 1));
+    dp[0][0].push_back({0, 0});
+    ll ans = 0;
+    for (int cost = 0; cost <= k; cost++)
+    {
+        for (int val = 0; val <= cost; val++)
+        {
+            for (auto st : dp[cost][val])
+            {
+                int idx = st.first;
+                ll pen = st.second;
+                ans = max(ans, (ll)val * (n + 1) - pen);
+                for (int nv = val + 1; nv <= k - cost; nv++)
+                {
+                    int start = idx + 1;
+                    if (start > n)
+                        break;
+                    int p = nxt[start][nv];
+                    if (p > n)
+                        continue;
+                    int nc = cost + nv;
+                    ll np = pen + 1LL * (nv - val) * p;
+                    P ns = {p, np};
+                    auto &vlist = dp[nc][nv];
+                    bool dom = false;
+                    for (auto &e : vlist)
+                        if (e.first <= p && e.second <= np)
+                        {
+                            dom = true;
+                            break;
+                        }
+                    if (dom)
+                        continue;
+                    vector<P> tmp;
+                    for (auto &e : vlist)
+                        if (!(p <= e.first && np <= e.second))
+                            tmp.push_back(e);
+                    tmp.push_back(ns);
+                    vlist.swap(tmp);
+                }
+            }
+        }
+    }
+    cout << ans << "\n";
 }
 int32_t main()
 {

@@ -40,6 +40,18 @@ using namespace std;
 
 void solve()
 {
+    int n;
+    cin >> n;
+    vector<int> a(n);
+    for (int i = 0; i < n; i++)
+        cin >> a[i];
+
+    set<int> uniq(all(a));
+    int distinct = uniq.size();
+    auto it = uniq.lower_bound(distinct);
+    if (it == uniq.end())
+        it = prev(uniq.end());
+    cout << *it << endl;
 }
 int32_t main()
 {

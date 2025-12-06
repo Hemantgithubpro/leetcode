@@ -40,6 +40,59 @@ using namespace std;
 
 void solve()
 {
+    string s, t;
+    cin >> s >> t;
+    vector<int> cnt_s(26, 0), cnt_t(26, 0);
+    for (char c : s)
+        cnt_s[c - 'a']++;
+    for (char c : t)
+        cnt_t[c - 'a']++;
+    bool possible = true;
+    for (int i = 0; i < 26; i++)
+    {
+        if (cnt_s[i] > cnt_t[i])
+        {
+            possible = false;
+            break;
+        }
+    }
+    if (!possible)
+    {
+        cout << "Impossible" << endl;
+        return;
+    }
+    vector<int> extra(26, 0);
+    for (int i = 0; i < 26; i++)
+    {
+        extra[i] = cnt_t[i] - cnt_s[i];
+    }
+    string ans;
+    int i = 0;
+    int mini = 0;
+    while (i < (int)s.size())
+    {
+        while (mini < 26 && extra[mini] == 0)
+            mini++;
+        if (mini == 26)
+            break;
+        char c = 'a' + mini;
+        if (c < s[i])
+        {
+            ans += c;
+            extra[mini]--;
+        }
+        else
+        {
+            ans += s[i];
+            i++;
+        }
+    }
+    ans += s.substr(i);
+    for (int k = 0; k < 26; k++)
+    {
+        ans += string(extra[k], 'a' + k);
+    }
+    cout << ans << endl;
 }
 int32_t main()
 {
