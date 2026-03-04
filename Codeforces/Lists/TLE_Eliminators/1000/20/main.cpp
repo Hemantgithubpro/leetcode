@@ -5,7 +5,42 @@ using namespace std;
 
 void solve(){
     // input here only
-    
+    int mexofarr,xorofarr;
+    cin>>mexofarr>>xorofarr;
+
+    int ans=mexofarr;
+
+    int newx=0;
+    for(int i=0; i<mexofarr; i++){
+        newx=newx^i;
+    }
+    // newx ^ needed = xorofarr
+    if(newx==xorofarr) {
+        cout<< ans<<endl;
+        return;
+    }
+    else if( newx !=0 ){
+        ans+=1;
+        cout<<ans<<endl;
+        return;
+    }
+    else {
+        cout<<ans+2<<endl;
+        return;
+    }
+    // if(newx==xorofarr) {
+    //     cout<< ans<<endl;
+    //     return;
+    // }
+    // else if( newx !=0 ){
+    //     ans+=1;
+    //     cout<<ans<<endl;
+    //     return;
+    // }
+    // else {
+    //     cout<<ans+2<<endl;
+    //     return;
+    // }
 }
 
 // void solve(ll n, vector<ll>& a){
