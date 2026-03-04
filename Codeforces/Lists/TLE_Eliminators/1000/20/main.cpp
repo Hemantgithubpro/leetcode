@@ -3,30 +3,38 @@
 
 using namespace std;
 
+static long long xor_upto(long long n) {
+    // XOR of all integers in [0, n]
+    if (n < 0) return 0;
+    switch (n & 3LL) {
+        case 0: return n;
+        case 1: return 1;
+        case 2: return n + 1;
+        default: return 0;
+    }
+}
+
 void solve(){
     // input here only
-    int mexofarr,xorofarr;
+    long long mexofarr, xorofarr;
     cin>>mexofarr>>xorofarr;
 
-    int ans=mexofarr;
+    long long ans = mexofarr;
 
-    int newx=0;
-    for(int i=0; i<mexofarr; i++){
-        newx=newx^i;
-    }
-    // newx ^ needed = xorofarr
-    if(newx==xorofarr) {
-        cout<< ans<<endl;
+    // XOR of [0, mexofarr-1]
+    long long prefix = xor_upto(mexofarr - 1);
+
+    if (prefix == xorofarr) {
+        cout << ans << '\n';
         return;
     }
-    else if( newx !=0 ){
-        ans+=1;
-        cout<<ans<<endl;
-        return;
-    }
-    else {
-        cout<<ans+2<<endl;
-        return;
+
+    long long needed = prefix ^ xorofarr;
+    // If we add 'needed' and it equals mexofarr, mex would increase, so we need two numbers.
+    if (needed == mexofarr) {
+        cout << ans + 2 << '\n';
+    } else {
+        cout << ans + 1 << '\n';
     }
     // if(newx==xorofarr) {
     //     cout<< ans<<endl;
