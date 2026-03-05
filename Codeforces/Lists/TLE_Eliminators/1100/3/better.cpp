@@ -49,8 +49,11 @@ void solve()
     // 4: 4>1, 4>2, 4+2+1>5 => 7>5 => psum[i]>b[i+1]
 
     ll n; cin>>n;
-    vec(a,n); cin(a,n);
-    vector<int> b(a);
+    vector<ll> a(n);
+    for(int i=0; i<n; i++){
+        cin>>a[i];
+    }
+    vector<ll> b(a);
     sort(b.begin(),b.end());
 
     vec(psum,n);
