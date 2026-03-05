@@ -41,7 +41,22 @@ using namespace std;
 
 void solve()
 {
+    int n,k; cin>>n>>k;
+    vec(a,n);
+    cin(a,n);
+    vec(b,n);cin(b,n);
+
     
+    int ans=0;
+
+    int maxb=0;
+    int sum=0;
+    for(int i=0; i<min(n,k); i++){
+        sum+=a[i];
+        maxb=max(maxb,b[i]);
+        ans=max(ans,sum+(k-i-1)*maxb);
+    }
+    cout<<ans<<endl;
 }
 int32_t main()
 {

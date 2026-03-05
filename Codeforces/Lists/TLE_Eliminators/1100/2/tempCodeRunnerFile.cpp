@@ -38,52 +38,29 @@ const int N = 1e7 + 10;
 using ll = long long;
 using namespace std;
 
+
 void solve()
 {
+    int n,k; cin>>n>>k;
+    vec(a,n);
+    cin(a,n);
+    vec(b,n);cin(b,n);
 
-    // 20 5 1 4 2
-    // 1 2 4 5 20
-    // prefix sum: 1 3 7 12 32
-    // 1: 0
-    // 2: 2>1 , 2+1!>4 -> 1
-    // 4: 4>1, 4>2, 4+2+1>5 => 7>5 => psum[i]>b[i+1]
-
-    ll n; cin>>n;
-    vec(a,n); cin(a,n);
-    vector<int> b(a);
-    sort(b.begin(),b.end());
-
-    vec(psum,n);
-    psum[0]=b[0];
-    for(ll i=1; i<n; i++){
-        psum[i]=psum[i-1]+b[i];
+    unordered_set<int,bool> isCompleted;
+    floop(n){
+        isCompleted[i]=false;
     }
+    isCompleted[0]=true;
+    ll ans=a[0];
 
-    unordered_map<ll,ll> um;
-
-    for(ll i=0; i<n; i++){
-        ll val=b[i];
-        ll ans=i;
-        ll sumtillnow=psum[i]-b[i];
-        ll j=i;
-        while(psum[j]>=b[j+1] && j<n-1){
-            j++;
-            ans++;
-        }
-        um[val]=ans;
+    int maxb=0;
+    int sum=0;
+    for(int i=0; i<min(n,k); i++){
+        sum+=a[i];
+        maxb=max(maxb,b[i]);
+        ans=max(ans,sum+(k-i-1)*maxb);
     }
-
-    // 1:0
-    // 2:1
-    // 4:3
-    // 5:3
-    // 20:4
-
-    for(ll i=0; i<n; i++){
-        ll val=a[i];
-        cout<<um[val]<<" ";
-    }
-    cout<<endl;
+    cout<<ans<<endl;
 }
 int32_t main()
 {
