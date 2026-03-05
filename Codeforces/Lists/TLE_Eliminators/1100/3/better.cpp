@@ -56,7 +56,7 @@ void solve()
     vector<ll> b(a);
     sort(b.begin(),b.end());
 
-    vec(psum,n);
+    vector<ll> psum(n);
     psum[0]=b[0];
     for(ll i=1; i<n; i++){
         psum[i]=psum[i-1]+b[i];
@@ -69,7 +69,7 @@ void solve()
         ll ans=i;
         ll sumtillnow=psum[i]-b[i];
         ll j=i;
-        while(psum[j]>=b[j+1] && j<n-1){
+        while(j<n-1 && psum[j]>=b[j+1]){
             j++;
             ans++;
         }
