@@ -48,45 +48,64 @@ void solve()
     // 2: 2>1 , 2+1!>4 -> 1
     // 4: 4>1, 4>2, 4+2+1>5 => 7>5 => psum[i]>b[i+1]
 
-    ll n; cin>>n;
+    ll n;
+    cin >> n;
     vector<ll> a(n);
-    for(int i=0; i<n; i++){
-        cin>>a[i];
+    for (int i = 0; i < n; i++)
+    {
+        cin >> a[i];
     }
     vector<ll> b(a);
-    sort(b.begin(),b.end());
+    sort(b.begin(), b.end());
 
     vector<ll> psum(n);
-    psum[0]=b[0];
-    for(ll i=1; i<n; i++){
-        psum[i]=psum[i-1]+b[i];
+    psum[0] = b[0];
+    for (ll i = 1; i < n; i++)
+    {
+        psum[i] = psum[i - 1] + b[i];
     }
 
-    unordered_map<ll,ll> um;
+    // unordered_map<ll, ll> um;
 
-    for(ll i=0; i<n; i++){
-        ll val=b[i];
-        ll ans=i;
-        ll sumtillnow=psum[i]-b[i];
-        ll j=i;
-        while(j<n-1 && psum[j]>=b[j+1]){
-            j++;
-            ans++;
-        }
-        um[val]=ans;
+    // for(ll i=0; i<n; i++){
+    //     ll val=b[i];
+    //     ll ans=i;
+    //     ll sumtillnow=psum[i]-b[i];
+    //     ll j=i;
+    //     while(j<n-1 && psum[j]>=b[j+1]){
+    //         j++;
+    //         ans++;
+    //     }
+    //     um[val]=ans;
+    // }
+    vector<ll> reach(n);
+    reach[n - 1] = n - 1;
+
+    for (ll i = n - 2; i >= 0; --i)
+    {
+        if (psum[i] >= b[i + 1])
+            reach[i] = reach[i + 1];
+        else
+            reach[i] = i;
     }
 
+    unordered_map<ll, ll> um;
+    for (ll i = 0; i < n; ++i)
+    {
+        um[b[i]] = reach[i];
+    }
     // 1:0
     // 2:1
     // 4:3
     // 5:3
     // 20:4
 
-    for(ll i=0; i<n; i++){
-        ll val=a[i];
-        cout<<um[val]<<" ";
+    for (ll i = 0; i < n; i++)
+    {
+        ll val = a[i];
+        cout << um[val] << " ";
     }
-    cout<<endl;
+    cout << endl;
 }
 int32_t main()
 {

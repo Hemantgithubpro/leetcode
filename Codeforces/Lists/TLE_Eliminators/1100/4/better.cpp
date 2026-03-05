@@ -38,10 +38,60 @@ const int N = 1e7 + 10;
 using ll = long long;
 using namespace std;
 
-
 void solve()
 {
-    
+    int n;
+    cin >> n;
+
+    vec(a, n);
+    cin(a, n);
+
+    ll ans = LLONG_MIN;
+    if (n == 1)
+    {
+        cout << a[0] << endl;
+        return;
+    }
+    // brute force, without dp, non-recursive solution
+    // for (int i = 0; i < n - 1; i++)
+    // {
+    //     int sum = a[i];
+    //     ans = max(sum, ans);
+    //     bool flag = false; // even = false
+    //     if (a[i] & 1)
+    //         flag = true; // odd = true
+    //     for (int j = i + 1; j < n; j++)
+    //     {
+    //         if (!(a[j] & 1) == flag)
+    //         {
+    //             sum += a[j];
+    //             flag = !flag;
+    //             ans = max(sum, ans);
+    //         }
+    //         else
+    //         break;
+    //     }
+    //     ans = max(sum, ans);
+    // }
+
+    ll cur = a[0];
+    ans = a[0];
+
+    // simple kadane's algo
+    for (int i = 1; i < n; i++)
+    {
+        bool prevOdd = (abs(a[i - 1]) & 1);
+        bool curOdd = (abs(a[i]) & 1);
+
+        if (prevOdd != curOdd)
+            cur = max((ll)a[i], cur + a[i]);
+        else
+            cur = a[i];
+
+        ans = max(ans, cur);
+    }
+
+    cout << ans << endl;
 }
 int32_t main()
 {
