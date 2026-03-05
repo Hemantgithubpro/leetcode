@@ -38,56 +38,10 @@ const int N = 1e7 + 10;
 using ll = long long;
 using namespace std;
 
-// Erase First or Second Letter
-// BFS to collect all distinct strings reachable by repeatedly deleting index 0 or 1.
-// Memory-efficient: single set tracks both visited states and final results.
-void slv(const string &s, unordered_set<string> &all_strings)
-{
-    unordered_set<string> visited;
-    queue<string> q;
-    q.push(s);
-    visited.insert(s);
-    all_strings.insert(s);
-
-    while (!q.empty())
-    {
-        string curr = q.front();
-        q.pop();
-
-        if (curr.size() > 1)
-        {
-            // remove first character
-            string t1 = curr.substr(1);
-            if (visited.find(t1) == visited.end())
-            {
-                visited.insert(t1);
-                all_strings.insert(t1);
-                q.push(t1);
-            }
-
-            // remove second character
-            string t2 = curr;
-            t2.erase(1, 1);
-            if (visited.find(t2) == visited.end())
-            {
-                visited.insert(t2);
-                all_strings.insert(t2);
-                q.push(t2);
-            }
-        }
-    }
-}
 
 void solve()
 {
-    // remove first, or second
-    int n;
-    cin >> n;
-    string s;
-    cin >> s;
-    unordered_set<string> all_strings;
-    slv(s, all_strings);
-    cout << all_strings.size() << endl;
+    
 }
 int32_t main()
 {

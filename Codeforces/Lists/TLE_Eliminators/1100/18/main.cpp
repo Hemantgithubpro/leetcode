@@ -4,13 +4,9 @@
 using namespace std;
 
 void solve(){
-    // input here only
     
 }
 
-// void solve(ll n, vector<ll>& a){
-
-// }
 
 int main() {
 #ifndef ONLINE_JUDGE
