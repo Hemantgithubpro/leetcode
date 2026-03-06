@@ -38,11 +38,63 @@ const int N = 1e7 + 10;
 using ll = long long;
 using namespace std;
 
-
+bool check(int mid, vector<int> &a, int x)
+{
+    ll units = 0;
+    for (int i = 0; i < a.size(); i++)
+    {
+        if (a[i] < mid)
+            units += (mid - a[i]);
+    }
+    return units <= x;
+}
 void solve()
 {
-    
+    int n, x;
+    cin >> n >> x;
+    vec(a, n);
+    cin(a, n);
+
+    // asort(a);
+
+    // 3 1 2 4 6 2 5
+    // 1 2 2 3 4 5 6
+
+    // ll sum=0;
+    // floop(n){
+    //     sum+=a[i];
+    // }
+    // ll rest = n*a[n-1] - sum;
+
+    // ll ans=0;
+
+    // if(x>=rest){
+    //     ans=a[n-1];
+    //     x-=rest;
+    //     ans+=x/n;
+    // }
+    // else{
+
+    // }
+
+    ll ans = 0;
+    int l = 0;
+    int r = INT_MAX;
+
+    while (l <= r)
+    {
+        int mid = l + (r - l) / 2;
+        if (check(mid, a, x))
+        {
+            ans = mid;
+            l = mid + 1;
+        }
+        else
+            r = mid - 1;
+    }
+    cout << ans << endl;
 }
+
 int32_t main()
 {
 #ifndef ONLINE_JUDGE
