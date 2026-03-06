@@ -28,7 +28,7 @@ bool isPrime(int n)
 #define floop(n) for (int i = 0; i < n; i++)
 #define floop2(n) for (int j = 0; j < n; j++)
 #define all(a) a.begin(), a.end()
-#define vec(a, n) vector<int> a(n)
+#define vec(a, n) vector<ll> a(n)
 #define cin(a, n)               \
     for (int i = 0; i < n; i++) \
     cin >> a[i]
@@ -38,10 +38,33 @@ const int N = 1e7 + 10;
 using ll = long long;
 using namespace std;
 
-
 void solve()
 {
-    
+    // first brute force
+    ll n;
+    cin >> n;
+    ll q;
+    cin >> q;
+    vec(a, n);
+    cin(a, n);
+    vec(x, q);
+    cin(x, q);
+
+    for (int i = 0; i < q; i++)
+    {
+        ll e = pow(2, x[i]);
+        for (int j = 0; j < n; j++)
+        {
+            if (a[j] % e == 0)
+                a[j] += pow(2, x[i] - 1);
+        }
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        cout << a[i] << ' ';
+    }
+    cout << endl;
 }
 int32_t main()
 {

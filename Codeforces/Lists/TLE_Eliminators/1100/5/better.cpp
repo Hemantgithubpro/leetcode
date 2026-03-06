@@ -38,10 +38,43 @@ const int N = 1e7 + 10;
 using ll = long long;
 using namespace std;
 
-
 void solve()
 {
-    
+    int n;
+    cin >> n;
+    vec(a, n);
+    cin(a, n);
+
+    vector<ll> psum(n);
+    psum[0] = a[0];
+    for (int i = 1; i < n; i++)
+    {
+        psum[i] = psum[i - 1] + a[i];
+    }
+
+    // values of k are divisors of n,
+
+    // calculate max diff of k=1,2,3...
+
+    ll ans = 0;
+    for (int k = 1; k <= n / 2; k++)
+    {
+        if (n % k)
+            continue;
+        // sliding window of size k
+        ll start = k - 1;
+        ll maxi = psum[start];
+        ll mini = psum[start];
+        ll res = 0;
+        for (ll idx = start + k; idx < n; idx += k)
+        {                                        // Iterate over trucks
+            ll curr = psum[idx] - psum[idx - k]; // Calculate current truck's weight
+            maxi = max(maxi, curr);              // Update maximum weight
+            mini = min(mini, curr);              // Update minimum weight
+        }
+        ans = max(ans, maxi - mini); // Update the maximum absolute difference
+    }
+    cout << ans << endl;
 }
 int32_t main()
 {
