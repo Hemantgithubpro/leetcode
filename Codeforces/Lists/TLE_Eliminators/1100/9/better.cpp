@@ -37,11 +37,47 @@ bool isPrime(int n)
 const int N = 1e7 + 10;
 using ll = long long;
 using namespace std;
-
+ll sum(vector<ll> &arr, ll w, ll c)
+{
+    __int128_t ans = 0;
+    for (int i = 0; i < arr.size(); i++)
+    {
+        __int128_t x = (__int128_t)arr[i] + 2 * (__int128_t)w;
+        ans += x * x;
+        if(ans>c) return c+1;
+    }
+    return (ll)ans;
+}
 
 void solve()
 {
-    
+    ll n, c;
+    cin >> n >> c;
+    vector<ll> arr(n);
+    cin(arr, n);
+
+    ll l = 1;
+    ll r = LLONG_MAX;
+
+    while (l <= r)
+    {
+        ll mid = l + (r - l) / 2;
+        ll s = sum(arr, mid, c);
+        if (s == c)
+        {
+            cout << mid << endl;
+            return;
+        }
+        if (s < c)
+        {
+            l = mid + 1;
+        }
+        else
+        {
+            r = mid - 1;
+        }
+    }
+    cout << -1 << endl;
 }
 int32_t main()
 {
