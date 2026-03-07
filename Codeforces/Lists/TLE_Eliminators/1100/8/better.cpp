@@ -38,10 +38,59 @@ const int N = 1e7 + 10;
 using ll = long long;
 using namespace std;
 
+ll caldist(pair<ll, ll> a, pair<ll, ll> b)
+{
+    ll ax = a.first;
+    ll ay = a.second;
+    ll bx = b.first;
+    ll by = b.second;
+    return (abs(ax - bx) + abs(ay - by));
+}
 
+// did on my own
 void solve()
 {
-    
+    // major city nearest to a & b, find them.
+    // min_cost = f(a,m_a)+f(m_b,b)
+
+    ll n, k, a, b;
+    cin >> n >> k >> a >> b;
+
+    vector<pair<ll, ll>> arr(n);
+    floop(n)
+    {
+        ll p1, p2;
+        cin >> p1 >> p2;
+        pair<ll, ll> p;
+        p = {p1, p2};
+        arr[i] = p;
+    }
+    pair<ll, ll> d1 = arr[a - 1];
+    pair<ll, ll> d2 = arr[b - 1];
+
+    // nearest major to d1
+    ll dist1 = 1e17;
+    for (ll i = 0; i < k; i++)
+    {
+        dist1 = min(dist1, caldist(d1, arr[i]));
+    }
+    ll dist2 = 1e17;
+    for (ll i = 0; i < k; i++)
+    {
+        dist2 = min(dist2, caldist(d2, arr[i]));
+    }
+
+    ll direct = caldist(d1, d2);
+
+    // this was the edge case
+    if (k == 0)
+    {
+        cout << direct << endl;
+        return;
+    }
+    ll abc = dist1 + dist2;
+
+    cout << min(direct, abc) << endl;
 }
 int32_t main()
 {
