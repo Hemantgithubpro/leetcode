@@ -38,10 +38,28 @@ const int N = 1e7 + 10;
 using ll = long long;
 using namespace std;
 
-
 void solve()
 {
-    
+    ll n;
+    cin >> n;
+    vec(a, n);
+    cin(a, n);
+    vec(b, n);
+    cin(b, n);
+
+    asort(a);
+    asort(b);
+
+    floop(n)
+    {
+        cout << a[i] << ' ';
+    }
+    cout << endl;
+    floop(n)
+    {
+        cout << b[i] << ' ';
+    }
+    cout << endl;
 }
 int32_t main()
 {

@@ -25,6 +25,19 @@ bool isPrime(int n)
     }
     return true;
 }
+
+int gcdInt(int a, int b)
+{
+    a = abs(a);
+    b = abs(b);
+    while (b)
+    {
+        int t = a % b;
+        a = b;
+        b = t;
+    }
+    return a;
+}
 #define floop(n) for (int i = 0; i < n; i++)
 #define floop2(n) for (int j = 0; j < n; j++)
 #define all(a) a.begin(), a.end()
@@ -38,10 +51,52 @@ const int N = 1e7 + 10;
 using ll = long long;
 using namespace std;
 
+// vector<int> f(vector<int>& arr, int x){
+
+// }
 
 void solve()
 {
-    
+    // a1 % x == an % x ;
+    // modulo inverse
+    int n;
+    cin >> n;
+    vec(a, n);
+    cin(a, n);
+
+    if (n <= 1)
+    {
+        cout << 0 << endl;
+        return;
+    }
+
+    bool isallzero = true;
+    floop(n)
+    {
+        if (a[i] > 0)
+        {
+            isallzero = false;
+            break;
+        }
+    }
+    if (isallzero)
+    {
+        cout << 0 << endl;
+        return;
+    }
+
+    // 3 0 1 2 0 3 2 1
+    // 0 1 2 3 4 5 6 7
+    // n=8
+    // i=0, n-i-1=8-0-1=7
+    // i=1, n-i-1=8-1-1=6
+
+    int ans = 0;
+    floop(n)
+    {
+        ans = gcdInt(ans, a[i] - a[n - i - 1]);
+    }
+    cout << ans << endl;
 }
 int32_t main()
 {
