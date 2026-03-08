@@ -28,20 +28,65 @@ bool isPrime(int n)
 #define floop(n) for (int i = 0; i < n; i++)
 #define floop2(n) for (int j = 0; j < n; j++)
 #define all(a) a.begin(), a.end()
-#define vec(a, n) vector<int> a(n)
-#define cin(a, n)               \
-    for (int i = 0; i < n; i++) \
+#define vec(a, n) vector<ll> a(n)
+#define cin(a, n)              \
+    for (ll i = 0; i < n; i++) \
     cin >> a[i]
 #define yes cout << "YES" << endl
 #define no cout << "NO" << endl
-const int N = 1e7 + 10;
+// const ll N = 1e7 + 10;
 using ll = long long;
 using namespace std;
 
-
 void solve()
 {
-    
+    ll n, k;
+    cin >> n >> k;
+    vec(a, n);
+    cin(a, n);
+    asort(a);
+    // 15 22 12 10 13 11
+    // 10 11 12 13 15 22
+    // 12 13 15 22
+    // 12 13 15
+    ll l = 0, r = n - 1;
+    // while (k--)
+    // {
+    //     // calculate the min two elements and max elements
+    //     ll maxi = a[r];
+    //     ll mini = a[l] + a[l + 1];
+    //     // delete the min of these two
+    //     if (mini <= maxi)
+    //     {
+    //         l += 2;
+    //     }
+    //     else
+    //         r--;
+    //     // k--;
+    // }
+
+    while (k-- && l <= r)
+    {
+        ll maxi = a[r];
+        ll mini = LLONG_MAX;
+
+        if (l + 1 <= r)
+            mini = a[l] + a[l + 1];
+
+        if (mini <= maxi)
+            l += 2;
+        else
+            r--;
+    }
+
+    ll ans = 0;
+    while (l <= r)
+    {
+        ans += a[l];
+        l++;
+    }
+
+    cout << ans << endl;
 }
 int32_t main()
 {
