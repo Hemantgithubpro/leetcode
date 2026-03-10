@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+
 #define mod 1000000007
 #define pb push_back
 #define asort(a) sort(a.begin(), a.end())
@@ -41,7 +42,34 @@ using namespace std;
 
 void solve()
 {
-    
+    int n;
+    cin >> n;
+    vec(a, n);
+    cin(a, n);
+    vec(b, n);
+    cin(b, n);
+
+    int l = 0;
+    while (l < n && a[l] == b[l])
+        l++;
+
+    int r = n - 1;
+    while (r >= 0 && a[r] == b[r])
+        r--;
+
+    if (l > r)
+    {
+        cout << 1 << ' ' << n << endl;
+        return;
+    }
+
+    while (l > 0 && b[l - 1] <= b[l])
+        l--;
+
+    while (r + 1 < n && b[r] <= b[r + 1])
+        r++;
+
+    cout << l + 1 << ' ' << r + 1 << endl;
 }
 int32_t main()
 {
