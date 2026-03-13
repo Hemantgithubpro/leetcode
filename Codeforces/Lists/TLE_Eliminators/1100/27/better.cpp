@@ -45,29 +45,21 @@ void solve()
     vec(a, n);
     cin(a, n);
 
-    sort(all(a));
-
-    int l = 0, r = 1;
-    while (r < n)
+    set<int> us;
+    for (int i = 0; i < n; i++)
     {
-        if (l == r)
-        {
-            r++;
-            continue;
-        }
+        us.insert(a[i]);
+    }
 
-        int diff = a[r] - a[l];
-        if (diff == k)
+    for (int x : us)
+    {
+        int req = x - k;
+        if (us.count(req))
         {
             yes;
             return;
         }
-        if (diff < k)
-            r++;
-        else
-            l++;
     }
-
     no;
 }
 int32_t main()
