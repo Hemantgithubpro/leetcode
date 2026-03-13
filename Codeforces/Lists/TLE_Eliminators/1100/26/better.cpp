@@ -38,6 +38,7 @@ const int N = 1e7 + 10;
 using ll = long long;
 using namespace std;
 
+// 1669 F
 void solve()
 {
     ll n;
@@ -45,54 +46,30 @@ void solve()
     vec(a, n);
     cin(a, n);
 
-    // prefix sum
-    vector<ll> psum(n, 0);
-    psum[0] = a[0];
-    for (ll i = 1; i < n; i++)
-    {
-        psum[i] = psum[i - 1] + a[i];
-    }
-
-    // two pointer
     ll l = 0, r = n - 1;
-    ll sumall = psum[r];
-    ll summid = sumall / 2;
-    ll mid = l + (r - l) / 2;
-    while (l < r)
+    ll leftSum = 0, rightSum = 0;
+    ll ans = 0;
+
+    while (l <= r)
     {
-        if (psum[mid] == summid)
-            break;
-        else if (psum[mid] > summid)
-            r = mid - 1;
-        else
-            l = mid + 1;
-
-        mid = l + (r - l) / 2;
-    }
-
-    ll sum1 = 0, sum2 = 0;
-    l = mid;
-    r = mid + 1;
-    while (l >= 0 && r < n)
-    {
-        sum1 = psum[l];
-        sum2 = sumall - psum[r - 1];
-        if (sum1 == sum2)
-            break;
-
-        if (sum1 > sum2)
+        if (leftSum <= rightSum)
         {
-            sum1 -= a[l];
-            l--;
+            leftSum += a[l];
+            l++;
         }
         else
         {
-            sum2 -= a[r];
-            r++;
+            rightSum += a[r];
+            r--;
+        }
+
+        if (leftSum == rightSum)
+        {
+            ans = l + (n - 1 - r);
         }
     }
 
-    cout << (l+1) + (n-r) << endl;
+    cout << ans << endl;
 }
 int32_t main()
 {
