@@ -41,6 +41,24 @@ using namespace std;
 
 void solve()
 {
+    int n,k; cin>>n>>k;
+    vec(a,n); cin(a,n);
+
+    unordered_set<int> us;
+    for(int i=0; i<n; i++){
+        us.insert(a[i]);
+    }
+
+
+
+    for(int x: us){
+        int req=x-k;
+        if(us.count(req)){
+            yes;
+            return;
+        }
+    }
+    no;
     
 }
 int32_t main()
