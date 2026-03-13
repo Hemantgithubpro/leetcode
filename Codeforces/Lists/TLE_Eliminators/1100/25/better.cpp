@@ -38,11 +38,35 @@ const int N = 1e7 + 10;
 using ll = long long;
 using namespace std;
 
-
 void solve()
 {
-    
+    string s;
+    cin >> s;
+    int n = (int)s.size();
+    set<char> c;
+    int k;
+    for (k = 0; k < n; k++)
+    {
+        if (c.find(s[k]) == c.end())
+        {
+            c.insert(s[k]);
+        }
+        else
+        {
+            break;
+        }
+    }
+    for (int i = k; i < n; i++)
+    {
+        if (s[i] != s[i - k])
+        {
+            no;
+            return;
+        }
+    }
+    yes;
 }
+
 int32_t main()
 {
 #ifndef ONLINE_JUDGE

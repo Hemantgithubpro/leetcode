@@ -38,11 +38,60 @@ const int N = 1e7 + 10;
 using ll = long long;
 using namespace std;
 
-
-void solve()
-{
-    
+ll modInverse(ll a, ll m) {
+    ll res = 1, p = m-2;
+    while(p){
+        if(p&1) res = (res*a)%m;
+        a = (a*a)%m;
+        p >>= 1;
+    }
+    return res;
 }
+
+void solve() {
+    ll n; cin >> n;
+
+    ll inv6 = modInverse(6, mod);
+    ll inv2 = (mod+1)/2; // modular inverse of 2
+
+    ll sum1 = n%mod * (n+1)%mod %mod * (2*n+1)%mod %mod * inv6 %mod;
+    ll sum2 = (n-1+mod)%mod * n%mod * (2*n-1+mod)%mod %mod * inv6 %mod;
+    ll sum3 = (n-1+mod)%mod * n%mod %mod * inv2 %mod;
+
+    ll ans = (sum1 + sum2 + sum3) %mod;
+    ans = ans * 2022 %mod;
+
+    cout << ans << endl;
+}
+
+// void solve()
+// {
+//     ll n;
+//     cin >> n;
+
+//     ll ans = 0;
+
+//     for (ll i = 1; i <= n; i++)
+//     {
+//         ans %= mod;
+//         ll term = (i % mod) * (i % mod) % mod;
+//         ans += term;
+//         ans %= mod;
+//     }
+
+//     for (ll i = 1; i < n; i++)
+//     {
+//         ans %= mod;
+//         ll term = (i % mod) * ((i + 1) % mod) % mod;
+//         ans += term;
+//         ans %= mod;
+//     }
+//     ans *= 2022;
+//     ans %= mod;
+
+//     cout << ans << endl;
+// }
+
 int32_t main()
 {
 #ifndef ONLINE_JUDGE
