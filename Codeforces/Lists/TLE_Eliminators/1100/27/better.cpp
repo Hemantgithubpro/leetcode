@@ -38,28 +38,37 @@ const int N = 1e7 + 10;
 using ll = long long;
 using namespace std;
 
-
 void solve()
 {
-    int n,k; cin>>n>>k;
-    vec(a,n); cin(a,n);
+    int n, k;
+    cin >> n >> k;
+    vec(a, n);
+    cin(a, n);
 
-    unordered_set<int> us;
-    for(int i=0; i<n; i++){
-        us.insert(a[i]);
-    }
+    sort(all(a));
 
+    int l = 0, r = 1;
+    while (r < n)
+    {
+        if (l == r)
+        {
+            r++;
+            continue;
+        }
 
-
-    for(int x: us){
-        int req=x-k;
-        if(us.count(req)){
+        int diff = a[r] - a[l];
+        if (diff == k)
+        {
             yes;
             return;
         }
+        if (diff < k)
+            r++;
+        else
+            l++;
     }
+
     no;
-    
 }
 int32_t main()
 {
