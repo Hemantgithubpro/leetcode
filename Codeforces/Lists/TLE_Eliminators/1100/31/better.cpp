@@ -38,10 +38,48 @@ const int N = 1e7 + 10;
 using ll = long long;
 using namespace std;
 
+int findIdx(vector<int> &a, int ele)
+{
+    for (int i = 0; i < a.size(); i++)
+    {
+        if (a[i] == ele)
+            return i;
+    }
+    return -1;
+}
+
+void putIdxtoFirst(vector<int> &a, int idx)
+{
+    int val = a[idx];
+    for (int i = idx; i > 0; i--)
+    {
+        swap(a[i], a[i - 1]);
+    }
+    a[0] = val;
+}
 
 void solve()
 {
-    
+    int n, q;
+    cin >> n >> q;
+    vec(a, n);
+    cin(a, n);
+    vec(t, q);
+    cin(t, q);
+    vector<int> ans;
+    // brute force, it worked, not much constraints
+    for (int i = 0; i < q; i++)
+    {
+        int op = t[i];
+        int idx = findIdx(a, op);
+        ans.push_back(idx + 1);
+        putIdxtoFirst(a, idx);
+    }
+
+    floop(q)
+    {
+        cout << ans[i] << ' ';
+    }
 }
 int32_t main()
 {
@@ -51,10 +89,10 @@ int32_t main()
 #endif
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    int t;
-    cin >> t;
-    while (t--)
-    {
-        solve();
-    }
+    // int t;
+    // cin >> t;
+    // while (t--)
+    // {
+    solve();
+    // }
 }
