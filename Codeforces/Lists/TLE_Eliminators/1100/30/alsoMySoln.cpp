@@ -38,10 +38,60 @@ const int N = 1e7 + 10;
 using ll = long long;
 using namespace std;
 
+bool consider(vector<int> &a, int ans)
+{
+    int l = 0;
+    int r = a.size() - 1;
+    while (l <= r)
+    {
+        if (a[l] != a[r])
+        {
+            if (a[l] == ans)
+                l++;
+            else if (a[r] == ans)
+                r--;
+            else
+                return false;
+        }
+        else
+        {
+            l++;
+            r--;
+        }
+    }
+
+    return true;
+}
 
 void solve()
 {
-    
+    int n;
+    cin >> n;
+    vec(a, n);
+    cin(a, n);
+
+    int l = 0, r = n - 1;
+    bool flag = true;
+    int ans = 0;
+
+    while (l <= r)
+    {
+        if (a[l] != a[r])
+        {
+            if (consider(a, a[l]) || consider(a, a[r]))
+            {
+                yes;
+            }
+            else
+            {
+                no;
+            }
+            return;
+        }
+        l++;
+        r--;
+    }
+    yes;
 }
 int32_t main()
 {
@@ -57,4 +107,5 @@ int32_t main()
     {
         solve();
     }
+    return 0;
 }
