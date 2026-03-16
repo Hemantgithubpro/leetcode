@@ -39,32 +39,51 @@ bool isPrime(int n)
     return true;
 }
 
-ll lcm(ll num1, ll num2)
+bool verify(vector<ll> &a, ll k)
 {
-    // LCM formula: (a * b) / gcd(a, b)
-    return (num1 * num2) / (gcd(num1, num2));
-}
-
-// Function to calculate the sum of integers from 'start' to 'end'
-ll calculateSum(ll start, ll end)
-{
-    // Sum of an arithmetic series formula: ((start + end) * (end - start + 1)) / 2
-    ll sum = ((start + end) * (end - start + 1)) / 2;
-    // n(n+1)/2
-    return sum;
+    set<ll> us;
+    for (int i = 0; i < a.size(); i++)
+    {
+        ll val = a[i];
+        ll temp = val % k;
+        us.insert(temp);
+    }
+    if (us.size() == 2)
+        return true;
+    return false;
 }
 
 void solve()
 {
-    ll n, x, y;
-    cin >> n >> x >> y;
+    ll n;
+    cin >> n;
+    vec(a, n);
+    cin(a, n);
 
-    ll px = (n / x) - (n / lcm(x, y));
-    // Calculate the count of numbers divisible by y but not by lcm(x, y)
-    ll py = (n / y) - (n / lcm(x, y));
+    ll ans = 0;
 
-    // Calculate the maximum score using the derived counts
-    ll ans = calculateSum(n - px + 1, n) - calculateSum(1LL, py);
+    // Iterate over powers of 2 from 2^1 to 2^60
+    for (int i = 1; i <= 60; i++)
+    { // 2^1 -> 2^60
+
+        // Set to store distinct values after mod operation
+        set<ll> distinctVals;
+        // Calculate k as 2^i
+        ll k = 1LL << i; // Time Complexity: O(1)
+
+        // Calculate a[i] % k for each element and insert into the set
+        for (int ind = 0; ind < n; ind++)
+        {
+            distinctVals.insert(a[ind] % k); // Time Complexity: O(log N)
+        } 
+
+        // Check if there are exactly 2 distinct values
+        if (distinctVals.size() == 2)
+        {
+            ans = k;
+            break;
+        }
+    } 
 
     cout << ans << endl;
 }

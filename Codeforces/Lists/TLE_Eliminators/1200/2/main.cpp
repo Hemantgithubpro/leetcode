@@ -39,9 +39,49 @@ bool isPrime(int n)
     return true;
 }
 
+bool verify(vector<ll> &a, ll k)
+{
+    if (k <2)
+        return false;
+    set<ll> us;
+    for (int i = 0; i < a.size(); i++)
+    {
+        ll val = a[i];
+        ll temp = val % k;
+        us.insert(temp);
+    }
+    if (us.size() == 2)
+        return true;
+    return false;
+}
+
 void solve()
 {
-    
+    ll n;
+    cin >> n;
+    vec(a, n);
+    cin(a, n);
+
+    asort(a);
+
+    vec(diff, n);
+    for (int i = 0; i < n - 1; i++)
+    {
+        ll temp = a[i + 1] - a[i];
+        diff[i] = temp;
+    }
+
+    for (int i = 0; i < diff.size(); i++)
+    {
+        ll val = abs(diff[i]);
+        if (verify(a, val))
+        {
+            cout << val << endl;
+            return;
+        }
+    }
+
+    cout << 2 << endl;
 }
 
 int32_t main()
