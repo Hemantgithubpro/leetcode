@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-using ll = long long;
 #define mod 1000000007
 #define pb push_back
 #define asort(a) sort(a.begin(), a.end())
@@ -7,8 +6,8 @@ using ll = long long;
 #define toLow transform(s.begin(), s.end(), s.begin(), ::tolower)
 #define floop(n) for (int i = 0; i < n; i++)
 #define floop2(n) for (int j = 0; j < n; j++)
-#define all(a) a.begin(), a.end()
-#define vec(a, n) vector<ll> a(n)
+#define aint(a) a.begin(), a.end()
+#define vec(a, n) vector<int> a(n)
 #define cin(a, n)               \
     for (int i = 0; i < n; i++) \
     cin >> a[i]
@@ -38,6 +37,21 @@ bool isPrime(int n)
     }
     return true;
 }
+vector<int> removeDuplicates(vector<int> &a)
+{
+    unordered_set<int> seen;
+    vector<int> b;
+
+    for (int x : a)
+    {
+        if (seen.find(x) == seen.end())
+        {
+            b.push_back(x);
+            seen.insert(x);
+        }
+    }
+    return b;
+}
 
 void solve()
 {
@@ -45,43 +59,42 @@ void solve()
     cin >> n;
     vec(a, n);
     cin(a, n);
-
     if (n < 2)
     {
-        cout << 1 << endl;
+        cout << 0 << endl;
         return;
     }
+    vector<int> b;
+    bool isincreasing = true;
+    vector<int> rd = removeDuplicates(a);
+    int result = rd.size();
 
-    int count = 1; // first element always taken
-    int prev = a[0];
-    int direction = 0; // 0 = unknown, 1 = increasing, -1 = decreasing
-
-    for (int i = 1; i < n; i++)
+    b.push_back(rd[0]);
+    for (int i = 0; i < rd.size() - 1; i++)
     {
-        if (a[i] == prev)
-            continue; // skip duplicates
-
-        if (a[i] > prev)
+        if (rd[i + 1] > rd[i])
         {
-            if (direction != 1)
+            // increasing, now check if prev was increasing or decreasing
+            if (!isincreasing)
             {
-                count++;
-                direction = 1;
+                b.push_back(rd[i + 1]);
+                isincreasing = true;
             }
         }
-        else // a[i] < prev
+        else
         {
-            if (direction != -1)
+            // decreasing
+            if (isincreasing)
             {
-                count++;
-                direction = -1;
+                b.push_back(rd[i + 1]);
+                isincreasing = false;
             }
         }
-
-        prev = a[i];
+        // cout << i << ":" << result << ' ';
     }
+    result = b.size();
 
-    cout << count << endl;
+    cout << result << endl;
 }
 
 int32_t main()
