@@ -45,6 +45,7 @@ void solve()
     cin >> n;
     string s;
     cin >> s;
+    vector<int> done(n, 0); // track processed positions
 
     ll ans = 0;
 
@@ -55,12 +56,17 @@ void solve()
             continue;
         // ans += pos;
         // now multiples of pos are checked
-        int multiplier = 1;
-        while ((pos * multiplier) <= n && s[(pos * multiplier) -1] == '0')
+        for (int j = pos; j <= n; j += pos)
         {
-            s[(pos * multiplier) -1] = '1';
-            multiplier++;
-            ans += pos;
+            // stop if original string had '1'
+            if (s[j - 1] == '1') break;
+
+            // if not already processed
+            if (!done[j - 1])
+            {
+                done[j - 1] = 1;
+                ans += pos;
+            }
         }
     }
     cout << ans << endl;
