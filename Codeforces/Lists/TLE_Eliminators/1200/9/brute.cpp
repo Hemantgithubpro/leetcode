@@ -47,17 +47,41 @@ void solve()
     cin(a, n);
     vec(k, q);
     cin(k, q);
-
-    for(int i=1; i<n; i++){
-        a[i]+=a[i-1];
+    vec(orgk, q);
+    orgk = k;
+    asort(k);
+    map<ll, ll> um;
+    for(int i=0; i<q; i++){
+        um[orgk[i]]=i; // um.first=valofk, um[orgk[i]] = idx
     }
-    
+    // take sum of the a[i] whose values are smaller than k[i]
+    ll ans = 0;
+    int r = 0; // last visited right
+    for (int i = 0; i < q; i++)
+    {
 
-    vec(dup, q);
-    dup = k;
-    asort(dup);
-
-
+        int val = k[i];
+        while (r < n)
+        {
+            if (a[r] <= val)
+            {
+                ans += a[r];
+                r++;
+            }
+            else
+                break;
+        }
+        um[val]=ans;
+        // cout << ans << ' ';
+        // ans=0;
+    }
+    for(int i=0; i<q; i++){
+        int val=orgk[i];
+        ll temp=um[val];
+        cout<<temp<<' ';
+    }
+    cout << endl;
+    // cout << ans << endl;
 }
 
 int32_t main()
