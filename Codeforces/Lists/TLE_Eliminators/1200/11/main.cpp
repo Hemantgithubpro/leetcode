@@ -41,7 +41,29 @@ bool isPrime(int n)
 
 void solve()
 {
-    
+    int n;
+    cin >> n;
+    string s;
+    cin >> s;
+
+    ll ans = 0;
+
+    floop(n)
+    {
+        int pos = i + 1;
+        if (s[i] == '1')
+            continue;
+        // ans += pos;
+        // now multiples of pos are checked
+        int multiplier = 1;
+        while ((pos * multiplier) <= n && s[(pos * multiplier) -1] == '0')
+        {
+            s[(pos * multiplier) -1] = '1';
+            multiplier++;
+            ans += pos;
+        }
+    }
+    cout << ans << endl;
 }
 
 int32_t main()
