@@ -41,7 +41,35 @@ bool isPrime(int n)
 
 void solve()
 {
-    
+    // sum of all x[i] values in the group must not exceed the sum of y[i] values in the group
+    // in a group min. 2 persons, to find max no. of groups?
+    // can leave some people from the group
+    int n;
+    cin >> n;
+    vec(x, n);
+    cin(x, n);
+    vec(y, n);
+    cin(y, n);
+    ll maxcount = n / 2;
+
+    vec(sur, n);
+    floop(n)
+    {
+        sur[i] = y[i] - x[i];
+    }
+    // extra budget or in debt for each i
+    asort(sur);
+
+    vector<pair<int, int>> vp(n);
+    floop(n)
+    {
+        vp[i] = {x[i], y[i]};
+    }
+    sort(vp.begin(), vp.end());
+
+    // two pointer,
+    // max spend with min spend guy
+    // or max budget with min budget guy
 }
 
 int32_t main()
