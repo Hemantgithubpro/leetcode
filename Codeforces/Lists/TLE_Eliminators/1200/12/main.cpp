@@ -50,7 +50,6 @@ void solve()
     cin(x, n);
     vec(y, n);
     cin(y, n);
-    ll maxcount = n / 2;
 
     vec(sur, n);
     floop(n)
@@ -60,16 +59,26 @@ void solve()
     // extra budget or in debt for each i
     asort(sur);
 
-    vector<pair<int, int>> vp(n);
-    floop(n)
-    {
-        vp[i] = {x[i], y[i]};
-    }
-    sort(vp.begin(), vp.end());
+    int l = 0, r = n - 1;
+    ll ans = 0;
 
-    // two pointer,
-    // max spend with min spend guy
-    // or max budget with min budget guy
+    // Pair the most negative surplus with the largest available surplus.
+    // If the smallest cannot be paired with the largest, it cannot be paired at all.
+    while (l < r)
+    {
+        if (sur[l] + sur[r] >= 0)
+        {
+            ans++;
+            l++;
+            r--;
+        }
+        else
+        {
+            l++;
+        }
+    }
+
+    cout << ans << endl;
 }
 
 int32_t main()
