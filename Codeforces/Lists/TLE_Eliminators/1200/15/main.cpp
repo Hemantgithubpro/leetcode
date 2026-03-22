@@ -41,7 +41,46 @@ bool isPrime(int n)
 
 void solve()
 {
-    
+    // this question is basically
+    // largest subarray whose sum is equal to k
+
+    int n, k;
+    cin >> n >> k;
+    vec(arr, n);
+    cin(arr, n);
+
+    // prefix sum and hashmap
+    map<int, int> mp;
+
+    int sum = 0;
+    int maxi = 0;
+    bool found = false;
+
+    for (int i = 0; i < arr.size(); i++)
+    {
+        sum += arr[i];
+
+        if (sum == k)
+        {
+            maxi = i + 1;
+            found = true;
+        }
+
+        if (mp.find(sum - k) != mp.end())
+        {
+            maxi = max(maxi, i - mp[sum - k]);
+            found = true;
+        }
+
+        // store only first occurrence
+        if (mp.find(sum) == mp.end())
+            mp[sum] = i;
+        }
+
+    if (!found)
+        cout << -1 << endl;
+    else
+        cout << n - maxi << endl;
 }
 
 int32_t main()
