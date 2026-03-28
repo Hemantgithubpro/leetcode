@@ -41,59 +41,52 @@ bool isPrime(int n)
 
 void solve()
 {
-    int n;
-    char c;
-    cin >> n >> c;
+    int n, q;
+    cin >> n >> q;
+    vec(a, n);
+    cin(a, n);
+    ll sum = 0;
+    floop(n) { sum += a[i]; }
 
-    string s;
-    cin >> s;
-
-    bool check0 = true;
-
-    floop(n)
+    bool issecond = false;
+    bool prevwas2 = false;
+    ll secondval = 0;
+    int secondtime = -1;
+    vector<int> updatedtime(n, -1);
+    for (int cnt = 0; cnt < q; cnt++)
     {
-        if (s[i] != c)
+        int temp;
+        cin >> temp;
+        if (temp == 1)
         {
-            check0 = false;
-            break;
+            // a[i-1] = x
+            int i, x;
+            cin >> i >> x;
+
+            --i;
+            ll oldVal = a[i];
+            if (issecond && (prevwas2 || updatedtime[i] < secondtime))
+                oldVal = secondval;
+
+            sum += 1LL * x - oldVal;
+            a[i] = x;
+            updatedtime[i] = cnt;
+            prevwas2 = false;
         }
-    }
-
-    if (check0)
-    {
-        cout << "0" << endl;
-        return;
-    }
-
-    int val1 = -1;
-    for (long long i = 2; i <= n; i++)
-    {
-        bool isPoss = true;
-        for (long long j = i; j <= n; j += i)
+        else
         {
-            if (s[j - 1] != c)
-            {
-                isPoss = false;
-                break;
-            }
+            // a[all] = x;
+            int x;
+            cin >> x;
+            issecond = true;
+            prevwas2 = true;
+            secondval = x;
+            secondtime = cnt;
+            sum = 1LL * x * n;
+            // floop(n) a[i] = x;
         }
-
-        if (isPoss)
-        {
-            val1 = i;
-            break;
-        }
+        cout << sum << endl;
     }
-
-    if (val1 != -1)
-    {
-        cout << "1" << endl;
-        cout << val1 << endl;
-        return;
-    }
-
-    cout << "2" << endl;
-    cout << n - 1 << " " << n << endl; 
 }
 
 int32_t main()
@@ -104,10 +97,10 @@ int32_t main()
 #endif
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    int t;
-    cin >> t;
-    while (t--)
-    {
-        solve();
-    }
+    // int t;
+    // cin >> t;
+    // while (t--)
+    // {
+    solve();
+    // }
 }

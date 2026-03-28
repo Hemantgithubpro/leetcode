@@ -41,7 +41,35 @@ bool isPrime(int n)
 
 void solve()
 {
-    
+    int n, q;
+    cin >> n >> q;
+    vec(a, n);
+    cin(a, n);
+    ll sum = 0;
+    floop(n) { sum += a[i]; }
+    for (int cnt = 0; cnt < q; cnt++)
+    {
+        int temp;
+        cin >> temp;
+        if (temp == 1)
+        {
+            // a[i-1] = x
+            int i, x;
+            cin >> i >> x;
+            sum -= a[i - 1];
+            sum += x;
+            a[i - 1] = x;
+        }
+        else
+        {
+            // a[all] = x;
+            int x;
+            cin >> x;
+            sum = 1LL * x * n;
+            floop(n) a[i] = x;
+        }
+        cout << sum << endl;
+    }
 }
 
 int32_t main()
@@ -52,10 +80,10 @@ int32_t main()
 #endif
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    int t;
-    cin >> t;
-    while (t--)
-    {
-        solve();
-    }
+    // int t;
+    // cin >> t;
+    // while (t--)
+    // {
+    solve();
+    // }
 }
