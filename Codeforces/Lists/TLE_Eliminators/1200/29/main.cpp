@@ -41,7 +41,25 @@ bool isPrime(int n)
 
 void solve()
 {
-    
+    int n, k;
+    cin >> n >> k; 
+
+    k--; 
+
+    if (n % 2 == 0) 
+
+    {
+        int ans = k % n;             
+
+        cout << (k % n) + 1 << "\n"; 
+
+    }
+    else
+    {
+        int val = n / 2; 
+
+        cout << ((k + (k / val)) % n) + 1 << "\n";
+    }
 }
 
 int32_t main()
@@ -59,3 +77,4 @@ int32_t main()
         solve();
     }
 }
+

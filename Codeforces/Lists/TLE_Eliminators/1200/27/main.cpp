@@ -41,7 +41,85 @@ bool isPrime(int n)
 
 void solve()
 {
-    
+    // save all the bits idx of the prefix which should be flipped
+    // then either flip them or not and check if its same for that region of idx.
+    // repeat from further most prefix to closest one(first)
+
+    int n;
+    cin >> n;
+
+    string a, b;
+    cin >> a >> b;
+
+    vector<bool> canFlip(n);
+
+    int count0 = 0, count1 = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        if (a[i] == '0')
+        {
+            count0++;
+        }
+        else
+        {
+            count1++;
+        }
+
+        if (count0 == count1)
+            canFlip[i] = true;
+    }
+
+    bool isFlipped = false;
+
+    bool isPoss = true;
+
+    for (int i = n - 1; i >= 0; i--)
+    {
+        if (isFlipped == false)
+        {
+
+            if (a[i] != b[i])
+            {
+                if (canFlip[i])
+                {
+                    isFlipped ^= true;
+                }
+                else
+                {
+                    isPoss = false;
+
+                    break;
+                }
+            }
+        }
+        else
+        {
+
+            if (a[i] == b[i])
+            {
+                if (canFlip[i])
+                {
+                    isFlipped ^= true;
+                }
+                else
+                {
+                    isPoss = false;
+
+                    break;
+                }
+            }
+        }
+    }
+
+    if (isPoss)
+    {
+        yes;
+    }
+    else
+    {
+        no;
+    }
 }
 
 int32_t main()
