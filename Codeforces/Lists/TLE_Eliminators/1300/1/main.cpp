@@ -59,7 +59,20 @@ void solve()
     }
 
     // better approach
-    // i've got a num: a[i], now i need to find, c, such that a[i]+c % x ==0, && c-a[i] %y ==0, inverse mod concept, with binary search
+    // We need (a[i] + a[j]) % x == 0 and (a[j] - a[i]) % y == 0
+    // This implies:
+    // a[j] % x == (x - a[i] % x) % x
+    // a[j] % y == a[i] % y
+    map<pair<int, int>, int> cnt;
+    long long better_result = 0;
+    for (int i = 0; i < n; i++) {
+        int mod_x = a[i] % x;
+        int mod_y = a[i] % y;
+        int target_x = (x - mod_x) % x;
+        
+        better_result += cnt[{target_x, mod_y}];
+        cnt[{mod_x, mod_y}]++;
+    }
     
 
     cout<<result<<endl;
