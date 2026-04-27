@@ -46,19 +46,23 @@ void solve()
     
     vec(a,n); cin(a,n);
 
-    map<pair<int,int>, long long> cnt;
-    long long result = 0;
-
-    for (int i = 0; i < n; i++) {
-        int rx = a[i] % x;
-        int ry = a[i] % y;
-        int needx = (x - rx) % x;
-
-        result += cnt[{ry, needx}];
-        cnt[{ry, rx}]++;
+    asort(a);
+    int result=0;
+    // brute force
+    // no. of beautiful pairs: n2
+    for(int i=0; i<n-1; i++){
+        for(int j=i+1; j<n; j++){
+            int sum=a[i]+a[j];
+            int dif=a[j]-a[i];
+            if(sum%x==0 && dif%y==0) result++;
+        }
     }
 
-    cout << result << endl;
+    // better approach
+    // i've got a num: a[i], now i need to find, c, such that a[i]+c % x ==0, && c-a[i] %y ==0, inverse mod concept, with binary search
+    
+
+    cout<<result<<endl;
 }
 
 int32_t main()
