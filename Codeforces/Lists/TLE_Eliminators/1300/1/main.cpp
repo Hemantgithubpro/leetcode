@@ -41,41 +41,42 @@ bool isPrime(int n)
 
 void solve()
 {
-    int n,x,y;
-    cin>>n>>x>>y;
-    
-    vec(a,n); cin(a,n);
+    int n, x, y;
+    cin >> n >> x >> y;
+
+    vec(a, n);
+    cin(a, n);
 
     asort(a);
-    int result=0;
+    int result = 0;
     // brute force
     // no. of beautiful pairs: n2
-    for(int i=0; i<n-1; i++){
-        for(int j=i+1; j<n; j++){
-            int sum=a[i]+a[j];
-            int dif=a[j]-a[i];
-            if(sum%x==0 && dif%y==0) result++;
-        }
-    }
+    // for(int i=0; i<n-1; i++){
+    //     for(int j=i+1; j<n; j++){
+    //         int sum=a[i]+a[j];
+    //         int dif=a[j]-a[i];
+    //         if(sum%x==0 && dif%y==0) result++;
+    //     }
+    // }
 
     // better approach
     // We need (a[i] + a[j]) % x == 0 and (a[j] - a[i]) % y == 0
     // This implies:
     // a[j] % x == (x - a[i] % x) % x
     // a[j] % y == a[i] % y
-    map<pair<int, int>, int> cnt;
-    long long better_result = 0;
-    for (int i = 0; i < n; i++) {
+    map<pair<int, int>, ll> cnt;
+    long long result2 = 0;
+    for (int i = 0; i < n; i++)
+    {
         int mod_x = a[i] % x;
         int mod_y = a[i] % y;
         int target_x = (x - mod_x) % x;
-        
-        better_result += cnt[{target_x, mod_y}];
+
+        result2 += cnt[{target_x, mod_y}];
         cnt[{mod_x, mod_y}]++;
     }
-    
 
-    cout<<result<<endl;
+    cout << result2 << endl;
 }
 
 int32_t main()
