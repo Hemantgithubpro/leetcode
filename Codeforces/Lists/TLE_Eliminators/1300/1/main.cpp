@@ -41,7 +41,24 @@ bool isPrime(int n)
 
 void solve()
 {
+    int n,x,y;
+    cin>>n>>x>>y;
     
+    vec(a,n); cin(a,n);
+
+    map<pair<int,int>, long long> cnt;
+    long long result = 0;
+
+    for (int i = 0; i < n; i++) {
+        int rx = a[i] % x;
+        int ry = a[i] % y;
+        int needx = (x - rx) % x;
+
+        result += cnt[{ry, needx}];
+        cnt[{ry, rx}]++;
+    }
+
+    cout << result << endl;
 }
 
 int32_t main()
