@@ -5,36 +5,34 @@ bool isgood(int n, unordered_map<int, int> &um)
 {
     int orgnum = n;
     int newnum = 0;
+    int multiplier = 1;
     while (n)
     {
         int temp = n % 10;
-        if (um[temp])
+        if (um[temp] != -1)
         {
-            newnum += temp;
-            newnum *= 10;
+            newnum = newnum + um[temp] * multiplier;
+            multiplier *= 10;
         }
         else
             return false;
         n = n / 10;
     }
-    // reverse newnum
-    int nnum = 0;
-    while (newnum)
-    {
-        int t = newnum % 10;
-        nnum += t;
-        nnum *= 10;
-
-        newnum /= 10;
-    }
-    if (nnum == orgnum)
+    
+    if (newnum == orgnum)
         return false;
     return true;
 }
 
+int solveRec(int n, unordered_map<int, int> &um, vector<int>& memo) {
+    if (n == 0) return 0;
+    if (memo[n] != -1) return memo[n];
+    
+    return memo[n] = solveRec(n - 1, um, memo) + (isgood(n, um) ? 1 : 0);
+}
+
 int rotatedDigits(int n)
 {
-    // mapping or dictionary
     vector<int> memo(n + 1,-1);
 
     unordered_map<int, int> um;
@@ -49,13 +47,13 @@ int rotatedDigits(int n)
     um[8] = 8;
     um[9] = 6;
 
-    if(memo[n]) 
-    
-    return 0;
+    return solveRec(n, um, memo);
 }
 
 int main()
 {
-    int n = 4;
-    rotatedDigits(n);
+    int n = 10;
+    cout<<rotatedDigits(n);
+
+    return 0;
 }
