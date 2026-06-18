@@ -29,3 +29,5 @@ Release/
 *.tmp
 .DS_Store
 /.vscode/
+
+.commandcode/
