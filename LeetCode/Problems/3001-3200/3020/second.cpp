@@ -16,44 +16,49 @@ int maximumLength(vector<int> &nums)
     // only x is variable, otherwise all other elements are known
     // freq of x is 2, x^2 is 2, ... x^2p is 1
 
-    unordered_map<int, int> um;
-    for (int a : nums)
+    unordered_map<long long, long long> um;
+    for (long long a : nums)
         um[a]++;
 
     ans = max(ans, countones(nums));
 
     int maxi = *max_element(nums.begin(), nums.end());
 
-    for (int i = 2; i * i <= maxi; i++)
+    for (long long i = 2; i * i <= maxi; i++)
     {
         // cout<<"i: "<<i<<' ';
         int freq = 0;
-        for (int j = i; j * j <= maxi; j = j * j)
+        long long lastvalid = -1;
+        for (long long j = i; j * j <= maxi; j = j * j)
         {
-            cout<<"j: "<<j<<' ';
+            // cout << "j: " << j << ' ';
             if (um[j] >= 2)
-                freq += 2;
-            else if (um[j] == 1)
             {
-                freq++;
-                ans = max(freq, ans);
-                break;
+                freq += 2;
+                lastvalid = j;
             }
             else
                 break;
-            cout<<endl;
+            // cout << endl;
         }
+        if (um[lastvalid * lastvalid] > 0)
+        {
+            freq++;
+        }
+        ans = max(freq, ans);
         // cout<<endl;
     }
+    if (!(ans % 2))
+        ans--;
     return ans;
 }
 
 int main()
 {
-    vector<int> nums={5,4,1,1,2,2};
+    vector<int> nums = {5, 4, 1, 1, 2, 2};
 
-    cout<<endl<<maximumLength(nums);
+    cout << endl
+         << maximumLength(nums);
 
     return 0;
-
 }
