@@ -41,7 +41,40 @@ bool isPrime(int n)
 
 void solve()
 {
-    
+    // 1972 D
+    int n;
+    cin >> n;
+    vec(a, n);
+    cin(a, n);
+
+    // preprocess 'a' now
+    vector<int> prev_diff(n, -1);
+    int prv = -1;
+    for (int i = 1; i < n; i++)
+    {
+        if (a[i] != a[i - 1])
+            prv = i - 1;
+        prev_diff[i] = prv;
+    }
+
+    int q;
+    cin >> q;
+    while (q--)
+    {
+        int l, r;
+        cin >> l >> r;
+        // 1-based indexing
+        if (prev_diff[r - 1] >= l - 1)
+        {
+            cout << r << ' ' << prev_diff[r - 1] + 1;
+        }
+        else
+        {
+            cout << -1 << ' ' << -1;
+        }
+        cout << endl;
+    }
+    cout << endl;
 }
 
 int32_t main()
