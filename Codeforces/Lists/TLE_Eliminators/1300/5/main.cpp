@@ -41,7 +41,10 @@ bool isPrime(int n)
 
 void solve()
 {
-    
+    // approach 1
+    // to make the string alternating: min(sol(string s, 0), sol(s,1))
+    // sol(s,0) will start from 0 and go like 010101... and sol(s,1): 101010...
+     
 }
 
 int32_t main()
