@@ -8,9 +8,6 @@ class Solution:
             ans += i // 8 + 1
         return ans
 
-
-    
-    
 def main():
     sol = Solution()
     # word = "abcdefghijklmnopqrstuvwxyz"
