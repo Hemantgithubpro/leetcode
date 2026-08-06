@@ -10,7 +10,7 @@ def smallestNumber(n: int, t: int) -> int:
         return n
     
     # since n is small, i can try all combinations linearly
-    for i in range(n,2*n,1):
+    for i in range(n,200*n,1):
         prod=productOfDigits(i)
         if prod%t==0:
             return i
